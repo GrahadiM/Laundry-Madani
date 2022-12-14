@@ -12,7 +12,7 @@ class SettingHelper
 
     public static function getCode()
     {
-        $code = \App\Models\Transaction::where('customer_id', Auth()->user()->id)->where('status', 'Proses')->where('tgl_penerimaan', '=', NULL)->orderBy('created_at', 'DESC')->get()->first();
+        $code = \App\Models\Transaction::where('customer_id', Auth()->user()->id)->where('status', 'Proses')->where('tgl_penerimaan', '=', NULL)->latest('id')->get()->first();
         return $code;
     }
 

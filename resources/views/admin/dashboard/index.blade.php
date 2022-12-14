@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-3 col-6">
                 <!-- small card -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-primary">
                 <div class="inner">
                         <h3>{{ $user }}</h3>
                         <p>Data User</p>
@@ -21,14 +21,14 @@
                     <div class="icon">
                         <i class="far fa-address-card"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{ route('admin.users.index') }}" class="small-box-footer">
                         Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small card -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-primary">
                 <div class="inner">
                         <h3>{{ $category }}</h3>
                         <p>Data Kategori</p>
@@ -36,52 +36,22 @@
                     <div class="icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{ route('admin.categories.index') }}" class="small-box-footer">
                         Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-3 col-6">
                 <!-- small card -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-primary">
                 <div class="inner">
-                        <h3>{{ $service }}</h3>
-                        <p>Data Jasa</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">
-                        Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small card -->
-                <div class="small-box bg-info">
-                <div class="inner">
-                        <h3>{{ $service }}</h3>
+                        <h3>{{ $package }}</h3>
                         <p>Data Paket</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-book"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
-                        Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small card -->
-                <div class="small-box bg-info">
-                <div class="inner">
-                        <h3>{{ $demo }}</h3>
-                        <p>Data Testimonial</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-address-book"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{ route('admin.packages.index') }}" class="small-box-footer">
                         Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
                     </a>
                 </div>
@@ -96,7 +66,7 @@
                     <div class="icon">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                    <a href="{{ route('admin.transactions.index') }}" class="small-box-footer">
                         Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
                     </a>
                 </div>

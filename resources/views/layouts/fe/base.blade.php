@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-md-4 col-lg-3 info-col">
                     <div class="info_detail">
-                        <h4>About</h4>
+                        <h4>Moto Kami</h4>
                         <p>{{ \Setting::getSetting()->desc_footer }}</p>
                         {{-- <div class="info_social">
                             <a href="">
@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-md-4 col-lg-3 info-col">
                 <div class="info_contact">
-                    <h4>Contact Info</h4>
+                    <h4>Kontak</h4>
                     <div class="contact_link_box">
                         <p>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>

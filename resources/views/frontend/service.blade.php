@@ -37,7 +37,7 @@
                                                 @guest
                                                 <a href="{{ route('login') }}">{{ $item->name }}</a>
                                                 @else
-                                                <a href="{{ route('fe.service.detail', $item->id) }}">{{ $item->name }}</a>
+                                                <a href="{{ route('fe.service.detail', $item->slug) }}">{{ $item->name }}</a>
                                                 @endguest
                                             </li>
                                         @endforeach
@@ -68,36 +68,36 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="width: 50%; text-align: center;">
-                                                        <a href="{{ url('service/3-jam') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
+                                                        <a href="{{ route('fe.service.detail', '3-jam') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
                                                             3 Jam
                                                         </a>
                                                     </td>
                                                     <td style="width: 50%; text-align: center;">
-                                                        <a href="{{ url('service/1-hari') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
+                                                        <a href="{{ route('fe.service.detail', '1-hari') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
                                                             1 Hari
                                                         </a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 50%; text-align: center;">
-                                                        <a href="{{ url('service/6-jam') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
+                                                        <a href="{{ route('fe.service.detail', '6-jam') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
                                                             6 Jam
                                                         </a>
                                                     </td>
                                                     <td style="width: 50%; text-align: center;">
-                                                        <a href="{{ url('service/2-hari') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
+                                                        <a href="{{ route('fe.service.detail', '2-hari') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
                                                             2 Hari
                                                         </a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 50%; text-align: center;">
-                                                        <a href="{{ url('service/12-jam') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
+                                                        <a href="{{ route('fe.service.detail', '12-jam') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
                                                             12 Jam
                                                         </a>
                                                     </td>
                                                     <td style="width: 50%; text-align: center;">
-                                                        <a href="{{ url('service/3-hari') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
+                                                        <a href="{{ route('fe.service.detail', '3-hari') }}" class="list-group-item list-group-item-secondary" rel="noopener noreferrer">
                                                             3 Hari
                                                         </a>
                                                     </td>
@@ -123,7 +123,7 @@
                                                 @guest
                                                 <a href="{{ route('login') }}">{{ $item->name }}</a>
                                                 @else
-                                                <a href="{{ route('fe.service.detail', $item->id) }}">{{ $item->name }}</a>
+                                                <a href="{{ route('fe.service.detail', $item->slug) }}">{{ $item->name }}</a>
                                                 @endguest
                                             </li>
                                         @endforeach

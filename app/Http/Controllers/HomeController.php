@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Package;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,18 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->hasRole('admin'))
+        if (auth()->user()->hasRole('admin')) {
             return view('admin.dashboard.index', [
                 'title' => 'Dashboard',
                 'user' => User::all()->count(),
-                'category' => '',
-                'service' => '',
-                'transaction' => '',
-                'demo' => '',
-                'careers' => '',
-                'form_careers' => '',
+                'category' => Category::all()->count(),
+                'package' => Package::all()->count(),
+                'transaction' => Transaction::all()->count(),
             ]);
-        else
+        }
+        else {
             return redirect()->route('fe.index');
+        }
     }
 }

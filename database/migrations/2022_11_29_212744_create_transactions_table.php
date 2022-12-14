@@ -22,11 +22,11 @@ class CreateTransactionsTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('order_by'); // pakai kurir atau tidak
-            $table->string('status');
+            $table->string('status'); // Pending, Proses, Success, Cancel, Failed
             $table->integer('cost')->nullable();
-            $table->integer('qty')->nullable();
-            $table->string('type')->nullable();
-            $table->integer('total')->nullable();
+            // $table->integer('qty')->nullable();
+            // $table->string('type')->nullable();
+            // $table->integer('total')->nullable();
             $table->date('tgl_penerimaan')->nullable();
             $table->date('tgl_pengambilan')->nullable();
             $table->timestamps();

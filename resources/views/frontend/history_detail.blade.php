@@ -16,11 +16,15 @@
     <section class="client_section layout_padding">
         <div class="container">
             <div class="heading_container">
-                <h2>Riwayat Pesanan</h2>
+                <h2>Riwayat Pesanan (Code : {{ $data['dt']->code_order }})</h2>
+                <p>Daftar Pakaian</p>
             </div>
             <div class="client_container">
                 <div class="card border-dark mb-3">
-                    <div class="card-header">Daftar Pakaian</div>
+                    <div class="card-header">
+                        <a href="{{ url()->previous() }}" class="btn btn-danger btn-sm">Kembali</a>
+                        <a href="{{ route('fe.clothes', $data['dt']->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
+                    </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>

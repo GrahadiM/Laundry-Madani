@@ -1,4 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.adm.base')
+@section('title', trans('menu.user.title'))
+
+@push('style')
+@endpush
+
+@push('scripts')
+@endpush
 
 @section('content')
 <div class="row">

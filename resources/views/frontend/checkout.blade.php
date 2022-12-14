@@ -29,7 +29,7 @@
             </div>
             <div class="client_container">
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                    <h2><strong>{{ $data['service']->category->name . ' - ' . $data['service']->name }}</strong></h2>
+                    <h2><strong>{{ $package->category->name . ' - ' . $package->name }}</strong></h2>
                     <div class="row">
                         <div class="col-md-12 mx-0">
                             <form id="msform" method="POST" action="{{ route('fe.checkout.post') }}">
@@ -75,16 +75,16 @@
                                     <div class="form-card">
                                         <h2 class="fs-title">Personal Information</h2>
                                         <div class="row">
-                                            <input class="col-12" type="text" name="package_id"
-                                                value="{{ $data['service']->id }}" />
+                                            <input class="col-12" type="hidden" name="package_id"
+                                                value="{{ $package->id }}" />
                                             <input class="col-12" type="text" name="name"
-                                                value="{{ auth()->user()->name }}" placeholder="Name" />
+                                                value="{{ auth()->user()->name }}" placeholder="Name" required />
                                             <input class="col-12" type="email" name="email"
-                                                value="{{ auth()->user()->email }}" placeholder="Email Address" />
+                                                value="{{ auth()->user()->email }}" placeholder="Email Address" required />
                                             <input class="col-12" type="text" name="phone"
-                                                placeholder="WhatsApp atau No.Telp" />
-                                            <input class="col-12" type="text" name="address" placeholder="Alamat" />
-                                            <select class="list-dt col-12" id="order_by" name="order_by">
+                                                placeholder="WhatsApp atau No.Telp" required />
+                                            <input class="col-12" type="text" name="address" placeholder="Alamat" required />
+                                            <select class="list-dt col-12" id="order_by" name="order_by" required>
                                                 <option selected disabled>Apakah anda memerlukan kurir?</option>
                                                 <option value="Ya">Ya</option>
                                                 <option value="Tidak">Tidak</option>
@@ -112,21 +112,23 @@
                                 </fieldset>
                                 <fieldset>
                                     <div class="form-card">
-                                        <h2 class="fs-title text-center">Success !</h2>
+                                        <h2 class="fs-title text-center">Pesanan Anda Gagal Terkirim!</h2>
                                         <br><br>
                                         <div class="row justify-content-center">
                                             <div class="col-3">
-                                                <img src="https://img.icons8.com/color/96/000000/ok--v2.png"
+                                                <img src="https://img.icons8.com/color/96/000000/fail--v2.png"
                                                     class="fit-image">
                                             </div>
                                         </div>
                                         <br><br>
                                         <div class="row justify-content-center">
                                             <div class="col-7 text-center">
-                                                <h5>You Have Successfully Signed Up</h5>
+                                                <h5>Silahkan Lengkapi Formulir Sebelumnya</h5>
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="button" name="previous" class="previous action-button-previous"
+                                        value="Previous" />
                                 </fieldset>
                             </form>
                         </div>

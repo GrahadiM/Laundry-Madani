@@ -1,12 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Clothes;
 use Illuminate\Http\Request;
 
 class ClothesController extends Controller
 {
+    // function __construct()
+    // {
+    //      $this->middleware('permission:clothes-list|clothes-create|clothes-edit|clothes-delete', ['only' => ['index','show']]);
+    //      $this->middleware('permission:clothes-create', ['only' => ['create','store']]);
+    //      $this->middleware('permission:clothes-edit', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:clothes-delete', ['only' => ['destroy']]);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,21 +50,29 @@ class ClothesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Clothes  $clothes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Clothes $clothes)
+    public function show(Request $request ,$id)
     {
-        //
+        $data = Clothes::where('transaction_id', $request->transaction_id)->get();
+        return view('admin.clothes.index',compact('data'));
+    }
+
+    public function clothes_detail(Request $request ,$id)
+    {
+        // $id = $request->transaction_id;
+        $data = Clothes::where('transaction_id', $request->transaction_id)->get();
+        return view('admin.clothes.index',compact('data'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Clothes  $clothes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clothes $clothes)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +81,10 @@ class ClothesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Clothes  $clothes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clothes $clothes)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +92,10 @@ class ClothesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Clothes  $clothes
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clothes $clothes)
+    public function destroy($id)
     {
         //
     }

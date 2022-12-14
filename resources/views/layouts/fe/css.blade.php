@@ -1,11 +1,5 @@
     <!-- Favicon -->
-    <link href="
-    @if ( \Setting::getSetting()->favicon == null)
-        {{ asset('frontend/assets/images/favicon_default.ico') }}
-    @else
-        {{ Storage::disk('local')->url('public/images/setting/'.\Setting::getSetting()->favicon) }}
-    @endif
-    " rel="icon">
+    <link href="{{ \Setting::getSetting()->favicon == null ? asset('frontend/assets/images/favicon_default.ico') :  Storage::disk('local')->url('public/images/setting/'.\Setting::getSetting()->favicon) }}" rel="icon">
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/css/bootstrap.css" />

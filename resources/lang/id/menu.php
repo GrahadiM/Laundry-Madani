@@ -5,12 +5,84 @@ return [
         'title'          => 'Dashboard',
         'title_singular' => 'Dashboard',
     ],
+    'packageManagement' => [
+        'title'          => 'Menu Paket',
+        'title_singular' => 'Menu Paket',
+    ],
+    'category'     => [
+        'title'          => 'Data Kategori',
+        'title_singular' => 'Kategori',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'title'             => 'Judul',
+            'title_helper'      => '',
+            'created_at'        => 'Dibuat',
+            'created_at_helper' => '',
+            'updated_at'        => 'Diubah',
+            'updated_at_helper' => '',
+            'deleted_at'        => 'Dihapus',
+            'deleted_at_helper' => '',
+        ],
+    ],
+    'package'     => [
+        'title'          => 'Data Paket',
+        'title_singular' => 'Paket',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'title'             => 'Judul',
+            'title_helper'      => '',
+            'created_at'        => 'Dibuat',
+            'created_at_helper' => '',
+            'updated_at'        => 'Diubah',
+            'updated_at_helper' => '',
+            'deleted_at'        => 'Dihapus',
+            'deleted_at_helper' => '',
+        ],
+    ],
+    'clothes'     => [
+        'title'          => 'Data Pakaian',
+        'title_singular' => 'Pakaian',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'title'             => 'Judul',
+            'title_helper'      => '',
+            'created_at'        => 'Dibuat',
+            'created_at_helper' => '',
+            'updated_at'        => 'Diubah',
+            'updated_at_helper' => '',
+            'deleted_at'        => 'Dihapus',
+            'deleted_at_helper' => '',
+        ],
+    ],
+    'transactionManagement' => [
+        'title'          => 'Menu Transaksi',
+        'title_singular' => 'Menu Transaksi',
+    ],
+    'transaction'     => [
+        'title'          => 'Data Transaksi',
+        'title_singular' => 'Transaksi',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'title'             => 'Judul',
+            'title_helper'      => '',
+            'created_at'        => 'Dibuat',
+            'created_at_helper' => '',
+            'updated_at'        => 'Diubah',
+            'updated_at_helper' => '',
+            'deleted_at'        => 'Dihapus',
+            'deleted_at_helper' => '',
+        ],
+    ],
     'userManagement' => [
         'title'          => 'Menu User',
         'title_singular' => 'Menu User',
     ],
     'permission'     => [
-        'title'          => 'Permissions',
+        'title'          => 'Data Permission',
         'title_singular' => 'Permission',
         'fields'         => [
             'id'                => 'ID',
@@ -26,7 +98,7 @@ return [
         ],
     ],
     'role'           => [
-        'title'          => 'Roles',
+        'title'          => 'Data Role',
         'title_singular' => 'Role',
         'fields'         => [
             'id'                 => 'ID',
@@ -44,7 +116,7 @@ return [
         ],
     ],
     'user'           => [
-        'title'          => 'Users',
+        'title'          => 'Data User',
         'title_singular' => 'User',
         'fields'         => [
             'no'                       => 'No',

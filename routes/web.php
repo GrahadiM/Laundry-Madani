@@ -3,11 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClothesController;
+use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\SettingWebsiteController;
+use App\Http\Controllers\Admin\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,16 +26,24 @@ use App\Http\Controllers\Admin\SettingWebsiteController;
 */
 
 Route::group(['middleware' => ['xss']], function () {
-    Route::get('/', [App\Http\Controllers\FrontendController::class, 'index'])->name('fe.index');
-    Route::get('/about', [App\Http\Controllers\FrontendController::class, 'about'])->name('fe.about');
-    Route::get('/service', [App\Http\Controllers\FrontendController::class, 'service'])->name('fe.service');
-    // Route::get('/service/{package:slug}', [App\Http\Controllers\FrontendController::class, 'service_detail'])->name('fe.service.detail');
-    Route::get('/service/{id}', [App\Http\Controllers\FrontendController::class, 'service_detail'])->name('fe.service.detail');
-    Route::get('/checkout/{id}', [App\Http\Controllers\FrontendController::class, 'checkout'])->name('fe.checkout');
-    Route::post('/checkout_post', [App\Http\Controllers\FrontendController::class, 'checkout_post'])->name('fe.checkout.post');
-    Route::get('/testimonial', [App\Http\Controllers\FrontendController::class, 'testimonial'])->name('fe.testimonial');
-    Route::get('/history', [App\Http\Controllers\FrontendController::class, 'history'])->name('fe.history');
-    Route::get('/history/{id}', [App\Http\Controllers\FrontendController::class, 'history_detail'])->name('fe.history_detail');
+    Route::controller(FrontendController::class)->name('fe.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/about', 'about')->name('about');
+        Route::get('/service', 'service')->name('service');
+        Route::get('/testimonial', 'testimonial')->name('testimonial');
+        Route::middleware(['auth'])->group(function() {
+            Route::get('/service/{package:slug}', 'service_detail')->name('service.detail');
+            // Route::get('/service/{id}', 'service_detail')->name('service.detail');
+            Route::get('/checkout/{package:slug}', 'checkout')->name('checkout');
+            // Route::get('/checkout/{id}', 'checkout')->name('checkout');
+            Route::post('/checkout_post', 'checkout_post')->name('checkout.post');
+            Route::get('/checkout_clear', 'checkout_clear')->name('checkout.clear');
+            Route::get('/history', 'history')->name('history');
+            Route::get('/history/{id}', 'history_detail')->name('history_detail');
+            Route::get('/clothes/{id}', 'clothes')->name('clothes');
+            Route::post('/clothes_post', 'clothes_post')->name('clothes.post');
+        });
+    });
 
     Auth::routes([
         'login'    => true,
@@ -41,8 +54,7 @@ Route::group(['middleware' => ['xss']], function () {
         'verify'   => false,  // for email verification
     ]);
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::middleware(['auth'])->group(function() {
         Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
@@ -54,16 +66,14 @@ Route::group(['middleware' => ['xss']], function () {
     });
 
     Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function() {
-        Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
-            Route::get('/', 'edit')->name('edit');
-            Route::put('/', 'update')->name('update');
-            Route::post('upload', 'upload')->name('upload');
-            Route::put('password', 'password')->name('password');
-        });
 
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
         Route::resource('categories', CategoryController::class);
+        Route::resource('packages', PackageController::class);
+        Route::resource('transactions', TransactionController::class);
+        Route::resource('clothes', ClothesController::class);
+        Route::post('/clothes/{id}', 'clothes_detail')->name('clothes.detail');
 
         Route::controller(SettingWebsiteController::class)->prefix('setting')->name('setting.')->group(function () {
             Route::get('website', 'index')->name('index');

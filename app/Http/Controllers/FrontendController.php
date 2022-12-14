@@ -30,19 +30,26 @@ class FrontendController extends Controller
         $data['service3'] = Package::where('id', '>=' , 13)->where('id', '<=' , 15)->get();
         return view('frontend.service', compact('data'));
     }
-    public function service_detail(Request $request, $id)
+    public function service_detail(Request $request, Package $package)
     {
-        $data['service'] = Package::find($id);
+        // $data['service'] = Package::with(['category'])->find($package);
         // dd($data);
-        return view('frontend.service_detail', compact('data'));
+        return view('frontend.service_detail', compact('package'));
     }
-    public function checkout(Request $request, $id)
+    public function checkout(Request $request, Package $package)
     {
-        $data['service'] = Package::find($id);
-        return view('frontend.checkout', compact('data'));
+        // $data['service'] = Package::find($id);
+        return view('frontend.checkout', compact('package'));
     }
     public function checkout_post(Request $request)
     {
+        $request->validate([
+            'package_id' => ['required'],
+            'phone' => ['required', 'min:8'],
+            'address' => ['required'],
+            'order_by' => ['required'],
+        ]);
+
         // dd($request->all());
         $atr = new Transaction();
         $atr->code_order = Str::random(6);
@@ -51,9 +58,17 @@ class FrontendController extends Controller
         $atr->phone = $request->phone;
         $atr->address = $request->address;
         $atr->order_by = $request->order_by;
-        $atr->status = 'Proses';
+        $atr->status = 'Pending';
         $atr->created_at = Carbon::now();
         $atr->save();
+
+        return redirect()->route('fe.checkout.clear');
+        // return view('frontend.checkout_clear');
+    }
+    public function checkout_clear(Request $request)
+    {
+        // $data['transaction'] = Transaction::where('status', 'Proses')->where('tgl_penerimaan', '=', NULL)->latest('id')->get()->first();
+        // return view('frontend.checkout_clear', compact('data'));
         return view('frontend.checkout_clear');
     }
     public function testimonial()
@@ -62,12 +77,38 @@ class FrontendController extends Controller
     }
     public function history()
     {
-        $data['history'] = Transaction::with(['customer', 'package'])->where('customer_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+        $data['history'] = Transaction::with(['customer', 'package'])->where('customer_id', Auth::user()->id)->latest('id')->get();
         return view('frontend.history', compact('data'));
     }
     public function history_detail($id)
     {
+        $data['dt'] = Transaction::find($id);
         $data['clothes'] = Clothes::with('transaction')->where('transaction_id', $id)->get();
         return view('frontend.history_detail', compact('data'));
+    }
+    public function clothes($id)
+    {
+        $data['dt'] = Clothes::with('transaction')->where('transaction_id', $id)->get()->first();
+        $data['clothes'] = Clothes::with('transaction')->where('transaction_id', $id)->get();
+        dd($data['clothes']);
+        return view('frontend.clothes', compact('data'));
+    }
+    public function clothes_post(Request $request)
+    {
+        $request->validate([
+            'transaction_id' => ['required'],
+            'name' => ['required'],
+        ]);
+
+        // dd($request->all());
+        $atr = new Clothes();
+        $atr->transaction_id = $request->transaction_id;
+        $atr->name = $request->name;
+        $atr->qty = 1;
+        $atr->detail = $request->detail;
+        $atr->created_at = Carbon::now();
+        $atr->save();
+
+        return back();
     }
 }

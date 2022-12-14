@@ -1,6 +1,6 @@
     <nav class="navbar navbar-expand-lg custom_nav-container ">
         <a class="navbar-brand" href="{{ route('fe.index') }}">
-            <span>
+            <span class="text-uppercase">
                 {{ \Setting::getSetting()->name_web }}
             </span>
         </a>
@@ -33,7 +33,7 @@
                     @endif
                 @else
                     @if (auth()->user()->hasRole('customer'))
-                        <li class="nav-item {{ Request::is('history*') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('history*') || Request::is('clothes*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('fe.history') }}">Riwayat</a>
                         </li>
                     @endif

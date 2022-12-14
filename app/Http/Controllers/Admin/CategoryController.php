@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -23,8 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(5);
-        return view('categories.index',compact('categories'));
+        $data = Category::latest('id')->get();
+        return view('admin.categories.index',compact('data'));
     }
 
     /**
@@ -34,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -50,9 +51,14 @@ class CategoryController extends Controller
             'detail' => 'required',
         ]);
 
-        Category::create($request->all());
+        $dt = new Category;
+        $dt->name = $request->name;
+        $dt->slug = Str::slug($request->name);
+        $dt->detail = $request->detail;
+        $dt->created_at = now();
+        $dt->save();
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.categories.index')
                         ->with('success','Category created successfully.');
     }
 
@@ -62,9 +68,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        return view('categories.show',compact('category'));
+        $category = Category::find($id);
+        return view('admin.categories.show',compact('category'));
     }
 
     /**
@@ -73,9 +80,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        return view('categories.edit',compact('category'));
+        $category = Category::find($id);
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -85,16 +93,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
         ]);
 
-        $category->update($request->all());
+        $dt = Category::find($id);
+        $dt->name = $request->name;
+        $dt->slug = Str::slug($request->name);
+        $dt->detail = $request->detail;
+        $dt->updated_at = now();
+        $dt->update();
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.categories.index')
                         ->with('success','Category updated successfully');
     }
 
@@ -104,11 +117,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
+        $category = Category::find($id);
         $category->delete();
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.categories.index')
                         ->with('success','Category deleted successfully');
     }
 }

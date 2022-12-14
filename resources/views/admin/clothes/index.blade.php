@@ -1,5 +1,5 @@
 @extends('layouts.adm.base')
-@section('title', trans('menu.user.title'))
+@section('title', trans('menu.clothes.title'))
 
 @push('style')
 
@@ -14,70 +14,71 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ trans('menu.user.title') }}</h3>
-            {{-- <div class="card-tools">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.user.title') }}</a>
-            </div> --}}
+            <h3 class="card-title">{{ trans('menu.clothes.title') }}</h3>
+            <div class="card-tools">
+                <a href="{{ url()->previous() }}" class="btn btn-danger btn-sm">Kembali</a>
+                <a href="{{ route('admin.clothes.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
+            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>{{ trans('menu.user.fields.no') }}</th>
-                        <th>{{ trans('menu.user.fields.name') }}</th>
-                        <th>{{ trans('menu.user.fields.email') }}</th>
-                        <th>{{ trans('menu.user.fields.roles') }}</th>
-                        <th>{{ trans('menu.user.fields.created_at') }}</th>
-                        <th>{{ trans('global.actions') }}</th>
+                        <th>Code Order</th>
+                        <th>Name</th>
+                        <th>Detail</th>
+                        <th>Tanggal</th>
+                        {{-- <th>{{ trans('global.actions') }}</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $key => $user)
+                    @forelse ($data as $key => $dt)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            @if(!empty($user->getRoleNames()))
-                              @foreach($user->getRoleNames() as $v)
-                                 <label class="badge badge-success">{{ $v }}</label>
-                              @endforeach
-                            @endif
-                        </td>
-                        <td>{{ $user->updated_at ? Carbon\Carbon::parse($user->updated_at)->diffForHumans() : Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>
-                        <td class="text-center">
-                            <form action="{{ route('admin.users.destroy', $user->id) }}" class="row" method="POST">
+                        <td>{{ $dt->transaction->code_order }}</td>
+                        <td>{{ $dt->name }}</td>
+                        <td>{{ $dt->detail }}</td>
+                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
+                        {{-- <td class="text-center">
+                            <form action="{{ route('admin.clothes.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <div class="col-md-4">
-                                    <a class="btn btn-info btn-sm" href="{{ route('admin.users.show', $user->id) }}">
-                                        <i class="fas fa-search mr-2"></i>
+                                <div class="col-md-3">
+                                    <a class="btn btn-info btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                        <i class="fas fa-search"></i>
                                     </a>
                                 </div>
-                                <div class="col-md-4">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user->id) }}">
-                                        <i class="fas fa-pencil-alt mr-2"></i>
+                                <div class="col-md-3">
+                                    <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                        <i class="fas fa-clipboard-list"></i>
                                     </a>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.clothes.edit', $dt->id) }}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
                                     <button class="btn btn-danger btn-sm" type="submit">
-                                        <i class="fas fa-trash mr-2"></i>
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="5"><center>Data Kosong!</center></td>
+                    </tr>
+                    @endforelse
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>{{ trans('menu.user.fields.no') }}</th>
-                        <th>{{ trans('menu.user.fields.name') }}</th>
-                        <th>{{ trans('menu.user.fields.email') }}</th>
-                        <th>{{ trans('menu.user.fields.roles') }}</th>
-                        <th>{{ trans('menu.user.fields.created_at') }}</th>
-                        <th>{{ trans('global.actions') }}</th>
+                        <th>Code Order</th>
+                        <th>Name</th>
+                        <th>Detail</th>
+                        <th>Tanggal</th>
+                        {{-- <th>{{ trans('global.actions') }}</th> --}}
                     </tr>
                 </tfoot>
             </table>

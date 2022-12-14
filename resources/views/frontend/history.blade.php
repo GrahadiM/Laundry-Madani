@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data['history'] as $item)
+                                @forelse ($data['history'] as $item)
                                 <tr>
                                     <td scope="col">{{ $item->code_order }}</td>
                                     <td scope="col">{{ $item->package->name }}</td>
@@ -44,12 +44,17 @@
                                     <td scope="col">{{ $item->address }}</td>
                                     <td scope="col">{{ $item->order_by }}</td>
                                     <td scope="col">{{ $item->status }}</td>
-                                    <td scope="col">{{  __('Rp.').number_format($item->total,2,',','.') }}</td>
+                                    {{-- <td scope="col">{{  __('Rp.').number_format($item->total,2,',','.') }}</td> --}}
+                                    <td scope="col">{{ __('Rp.').number_format($item->package->price,2,',','.').'/'.$item->package->qty.$item->package->type }}</td>
                                     <td scope="col">
                                         <a href="{{ route('fe.history_detail', $item->id) }}" class="btn btn-sm btn-outline-dark">Detail</a>
                                     </td>
                                 </tr>
-                                @endforeach
+                                @empty
+                                <tr>
+                                    <td colspan="8"><center>Data Kosong!</center></td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

@@ -28,12 +28,12 @@
                 <div class="col-md-6">
                     <div class="detail-box">
                         <div class="heading_container">
-                            <h2>{{ $data['service']->category->name }}</h2>
+                            <h2>{{ $package->category->name }}</h2>
                         </div>
-                        <p>Nama : {{ $data['service']->name }}</p>
-                        <p>Price : {{ __('Rp.').number_format($data['service']->price,2,',','.') .'/'. $data['service']->qty.$data['service']->type }}</p>
-                        <p>Deskripsi : {{ $data['service']->body }}</p>
-                        <a href="{{ route('fe.checkout', $data['service']->id) }}">Pesan Sekarang</a>
+                        <p>Nama : {{ $package->name }}</p>
+                        <p>Price : {{ __('Rp.').number_format($package->price,2,',','.') .'/'. $package->qty.$package->type }}</p>
+                        <p>Deskripsi : {{ $package->body }}</p>
+                        <a href="{{ route('fe.checkout', $package->slug) }}">Pesan Sekarang</a>
                     </div>
                 </div>
             </div>

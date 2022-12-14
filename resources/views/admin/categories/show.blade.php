@@ -1,5 +1,5 @@
 @extends('layouts.adm.base')
-@section('title', trans('menu.user.title'))
+@section('title', trans('menu.category.title'))
 
 @push('style')
 @endpush
@@ -18,19 +18,15 @@
         <div class="card-body">
             <div class="form-group">
                 <strong>Nama : </strong>
-                {{ $user->name }}
+                {{ $category->name }}
             </div>
             <div class="form-group">
-                <strong>Email : </strong>
-                {{ $user->email }}
+                <strong>Slug : </strong>
+                {{ $category->slug }}
             </div>
             <div class="form-group">
-                <strong>Role : </strong>
-                @if (!empty($user->getRoleNames()))
-                    @foreach ($user->getRoleNames() as $v)
-                        <label class="badge badge-success">{{ $v }}</label>
-                    @endforeach
-                @endif
+                <strong>Detail : </strong>
+                {{ $category->detail == null ? '-' : $category->detail }}
             </div>
         </div>
     </div>

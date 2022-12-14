@@ -91,10 +91,10 @@ return [
     |
     */
 
-    'available_locales' => [
-        'Indonesia' => 'id',
-        'English' => 'en',
-    ],
+    // 'available_locales' => [
+    //     'Indonesia' => 'id',
+    //     'English' => 'en',
+    // ],
     // 'available_locales' => ['id', 'en'],
 
     /*

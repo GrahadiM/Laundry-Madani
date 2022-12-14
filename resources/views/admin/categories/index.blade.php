@@ -1,5 +1,5 @@
 @extends('layouts.adm.base')
-@section('title', trans('menu.user.title'))
+@section('title', trans('menu.category.title'))
 
 @push('style')
 
@@ -14,49 +14,41 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ trans('menu.user.title') }}</h3>
-            {{-- <div class="card-tools">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.user.title') }}</a>
-            </div> --}}
+            <h3 class="card-title">{{ trans('menu.category.title') }}</h3>
+            <div class="card-tools">
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.category.title') }}</a>
+            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>{{ trans('menu.user.fields.no') }}</th>
-                        <th>{{ trans('menu.user.fields.name') }}</th>
-                        <th>{{ trans('menu.user.fields.email') }}</th>
-                        <th>{{ trans('menu.user.fields.roles') }}</th>
-                        <th>{{ trans('menu.user.fields.created_at') }}</th>
+                        <th>Nama</th>
+                        <th>Slug</th>
+                        <th>Detail</th>
+                        <th>Date</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $key => $user)
+                    @foreach ($data as $key => $dt)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            @if(!empty($user->getRoleNames()))
-                              @foreach($user->getRoleNames() as $v)
-                                 <label class="badge badge-success">{{ $v }}</label>
-                              @endforeach
-                            @endif
-                        </td>
-                        <td>{{ $user->updated_at ? Carbon\Carbon::parse($user->updated_at)->diffForHumans() : Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>
+                        <td>{{ $dt->name }}</td>
+                        <td>{{ $dt->slug }}</td>
+                        <td>{{ $dt->detail == null ? '-' : $dt->detail }}</td>
+                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
-                            <form action="{{ route('admin.users.destroy', $user->id) }}" class="row" method="POST">
+                            <form action="{{ route('admin.categories.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <div class="col-md-4">
-                                    <a class="btn btn-info btn-sm" href="{{ route('admin.users.show', $user->id) }}">
+                                    <a class="btn btn-info btn-sm" href="{{ route('admin.categories.show', $dt->id) }}">
                                         <i class="fas fa-search mr-2"></i>
                                     </a>
                                 </div>
                                 <div class="col-md-4">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user->id) }}">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.categories.edit', $dt->id) }}">
                                         <i class="fas fa-pencil-alt mr-2"></i>
                                     </a>
                                 </div>
@@ -72,11 +64,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>{{ trans('menu.user.fields.no') }}</th>
-                        <th>{{ trans('menu.user.fields.name') }}</th>
-                        <th>{{ trans('menu.user.fields.email') }}</th>
-                        <th>{{ trans('menu.user.fields.roles') }}</th>
-                        <th>{{ trans('menu.user.fields.created_at') }}</th>
+                        <th>Nama</th>
+                        <th>Slug</th>
+                        <th>Detail</th>
+                        <th>Date</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </tfoot>

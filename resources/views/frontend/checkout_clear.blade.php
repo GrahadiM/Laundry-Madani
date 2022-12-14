@@ -46,7 +46,7 @@
                                         <br><br>
                                         <div class="row justify-content-center">
                                             <div class="col-7 text-center">
-                                                <h5>Kode Pesanan Anda Adalah {{ \Setting::getCode()->code_order }}</h5>
+                                                <h5>Kode Pesanan Anda Adalah <a href="{{ route('fe.history') }}">{{ \Setting::getCode()->code_order }}</a></h5>
                                             </div>
                                         </div>
                                     </div>
