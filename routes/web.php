@@ -73,7 +73,7 @@ Route::group(['middleware' => ['xss']], function () {
         Route::resource('packages', PackageController::class);
         Route::resource('transactions', TransactionController::class);
         Route::resource('clothes', ClothesController::class);
-        Route::post('/clothes/{id}', 'clothes_detail')->name('clothes.detail');
+        // Route::post('/clothes/{id}', 'clothes_detail')->name('clothes.detail');
 
         Route::controller(SettingWebsiteController::class)->prefix('setting')->name('setting.')->group(function () {
             Route::get('website', 'index')->name('index');
