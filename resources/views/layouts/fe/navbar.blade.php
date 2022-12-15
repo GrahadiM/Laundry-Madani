@@ -36,16 +36,22 @@
                         <li class="nav-item {{ Request::is('history*') || Request::is('clothes*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('fe.history') }}">Riwayat</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-danger" href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-danger" href="{{ route('home') }}">
+                                {{ __('Dashboard') }}
+                            </a>
+                        </li>
                     @endif
-                    <li class="nav-item {{ Request::is('testimonial*') ? 'active' : '' }}">
-                        <a class="nav-link btn btn-outline-danger" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </li>
                 @endguest
                 {{-- <form class="form-inline">
                     <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">

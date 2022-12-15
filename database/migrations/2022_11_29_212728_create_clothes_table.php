@@ -15,7 +15,7 @@ class CreateClothesTable extends Migration
     {
         Schema::create('clothes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('transaction_id');
+            $table->bigInteger('transaction_id');
             $table->string('name');
             $table->integer('qty');
             $table->text('detail')->nullable();

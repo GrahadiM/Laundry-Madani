@@ -88,9 +88,9 @@ class FrontendController extends Controller
     }
     public function clothes($id)
     {
-        $data['dt'] = Clothes::with('transaction')->where('transaction_id', $id)->get()->first();
-        $data['clothes'] = Clothes::with('transaction')->where('transaction_id', $id)->get();
-        dd($data['clothes']);
+        $data['dt'] = Transaction::find($id);
+        $data['clothes'] = Clothes::where('transaction_id', $id)->get();
+        // dd($data['clothes']);
         return view('frontend.clothes', compact('data'));
     }
     public function clothes_post(Request $request)
@@ -100,15 +100,16 @@ class FrontendController extends Controller
             'name' => ['required'],
         ]);
 
+        $id = $request->transaction_id;
         // dd($request->all());
         $atr = new Clothes();
-        $atr->transaction_id = $request->transaction_id;
+        $atr->transaction_id = $id;
         $atr->name = $request->name;
         $atr->qty = 1;
         $atr->detail = $request->detail;
         $atr->created_at = Carbon::now();
         $atr->save();
 
-        return back();
+        return redirect()->route('fe.history_detail', $id);
     }
 }

@@ -73,6 +73,180 @@
             </div>
         </div>
 
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Data Pesanan Baru</h3>
+                {{-- <div class="card-tools">
+                    <a href="{{ route('admin.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
+                </div> --}}
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Customer</th>
+                            <th>Category & Package</th>
+                            <th>Price/Qty</th>
+                            <th>Cost</th>
+                            <th>Order By</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>{{ trans('global.actions') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($pending as $key => $dt)
+                        <tr>
+                            <td>{{ $dt->code_order }}</td>
+                            <td>{{ $dt->customer->name }}</td>
+                            <td>{{ $dt->package->category->name.' - '.$dt->package->name }}</td>
+                            <td>{{ __('Rp.').number_format($dt->package->price,2,',','.').'/'.$dt->package->qty.$dt->package->type }}</td>
+                            <td>{{ __('Rp.').number_format($dt->cost,2,',','.') }}</td>
+                            <td>{{ $dt->order_by }}</td>
+                            <td>
+                                @if ($dt->status == 'Pending')
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
+                                @elseif ($dt->status == 'Proses')
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
+                                @elseif ($dt->status == 'Success')
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
+                                @else
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
+                                @endif
+                            </td>
+                            <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
+                            <td class="text-center">
+                                {{-- <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET" class="row">
+                                @csrf --}}
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <a class="btn btn-info btn-sm" href="{{ route('admin.transactions.show', $dt->id) }}">
+                                            <i class="fas fa-search"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </a>
+                                        <button class="btn btn-success btn-sm" type="submit">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {{-- </form> --}}
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="9"><center>Belum Ada Pesanan Terbaru!</center></td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Code</th>
+                            <th>Customer</th>
+                            <th>Category & Package</th>
+                            <th>Price/Qty</th>
+                            <th>Cost</th>
+                            <th>Order By</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>{{ trans('global.actions') }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Data Pesanan Dalam Pengerjaan</h3>
+                {{-- <div class="card-tools">
+                    <a href="{{ route('admin.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
+                </div> --}}
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Customer</th>
+                            <th>Category & Package</th>
+                            <th>Price/Qty</th>
+                            <th>Cost</th>
+                            <th>Order By</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>{{ trans('global.actions') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($proses as $key => $dt)
+                        <tr>
+                            <td>{{ $dt->code_order }}</td>
+                            <td>{{ $dt->customer->name }}</td>
+                            <td>{{ $dt->package->category->name.' - '.$dt->package->name }}</td>
+                            <td>{{ __('Rp.').number_format($dt->package->price,2,',','.').'/'.$dt->package->qty.$dt->package->type }}</td>
+                            <td>{{ __('Rp.').number_format($dt->cost,2,',','.') }}</td>
+                            <td>{{ $dt->order_by }}</td>
+                            <td>
+                                @if ($dt->status == 'Pending')
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
+                                @elseif ($dt->status == 'Proses')
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
+                                @elseif ($dt->status == 'Success')
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
+                                @else
+                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
+                                @endif
+                            </td>
+                            <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET" class="row">
+                                    @csrf
+                                    <div class="col-md-3">
+                                        <a class="btn btn-info btn-sm" href="{{ route('admin.transactions.show', $dt->id) }}">
+                                            <i class="fas fa-search"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{-- <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </a> --}}
+                                        <button class="btn btn-success btn-sm" type="submit">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="9"><center>Belum Ada Pesanan Yang Sedang Di Kerjakan!</center></td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Code</th>
+                            <th>Customer</th>
+                            <th>Category & Package</th>
+                            <th>Price/Qty</th>
+                            <th>Cost</th>
+                            <th>Order By</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>{{ trans('global.actions') }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
 @endsection
 
 {{-- Script --}}

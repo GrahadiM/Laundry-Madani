@@ -28,12 +28,17 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('admin')) {
+            $data['pending'] = Transaction::with('customer','package','employe','category')->where('status', 'Pending')->latest('id')->get();
+            $data['proses'] = Transaction::with('customer','package','employe','category')->where('status', 'Proses')->latest('id')->get();
+
             return view('admin.dashboard.index', [
                 'title' => 'Dashboard',
                 'user' => User::all()->count(),
                 'category' => Category::all()->count(),
                 'package' => Package::all()->count(),
                 'transaction' => Transaction::all()->count(),
+                'pending' => $data['pending'],
+                'proses' => $data['proses'],
             ]);
         }
         else {

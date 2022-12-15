@@ -17,6 +17,6 @@ class Clothes extends Model
     }
     public function transaction()
     {
-        return $this->belongsToMany(Transaction::class);
+        return $this->belongsTo(Transaction::class);
     }
 }

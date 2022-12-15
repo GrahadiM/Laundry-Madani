@@ -46,32 +46,29 @@
                         <td>{{ $dt->order_by }}</td>
                         <td>
                             @if ($dt->status == 'Pending')
-                                <button type="button" class="btn btn-secondary">{{ $dt->status }}</button>
+                                <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
                             @elseif ($dt->status == 'Proses')
-                                <button type="button" class="btn btn-warning">{{ $dt->status }}</button>
+                                <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
                             @elseif ($dt->status == 'Success')
-                                <button type="button" class="btn btn-succes">{{ $dt->status }}</button>
+                                <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
                             @else
-                                <button type="button" class="btn btn-danger">{{ $dt->status }}</button>
+                                <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
                             @endif
                         </td>
                         <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
-                            <div class="row">
+                            <form action="{{ route('admin.transactions.destroy', $dt->id) }}" class="row" method="POST">
+                                @method('DELETE')
+                                @csrf
                                 <div class="col-md-3">
                                     <a class="btn btn-info btn-sm" href="{{ route('admin.transactions.show', $dt->id) }}">
                                         <i class="fas fa-search"></i>
                                     </a>
                                 </div>
                                 <div class="col-md-3">
-                                    {{-- <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                    <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
                                         <i class="fas fa-clipboard-list"></i>
-                                    </a> --}}
-                                    <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET">
-                                        <button class="btn btn-success btn-sm" type="submit">
-                                            <i class="fas fa-clipboard-list"></i>
-                                        </button>
-                                    </form>
+                                    </a>
                                 </div>
                                 <div class="col-md-3">
                                     <a class="btn btn-primary btn-sm" href="{{ route('admin.transactions.edit', $dt->id) }}">
@@ -79,15 +76,11 @@
                                     </a>
                                 </div>
                                 <div class="col-md-3">
-                                    <form action="{{ route('admin.transactions.destroy', $dt->id) }}" class="row" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm" type="submit">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                                    <button class="btn btn-danger btn-sm" type="submit">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

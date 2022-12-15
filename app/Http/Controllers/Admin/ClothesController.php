@@ -55,14 +55,13 @@ class ClothesController extends Controller
      */
     public function show(Request $request ,$id)
     {
-        $data = Clothes::where('transaction_id', $request->transaction_id)->get();
+        $data = Clothes::where('transaction_id', $id)->get();
         return view('admin.clothes.index',compact('data'));
     }
 
     public function clothes_detail(Request $request ,$id)
     {
-        // $id = $request->transaction_id;
-        $data = Clothes::where('transaction_id', $request->transaction_id)->get();
+        $data = Clothes::with('transaction')->where('transaction_id', $id)->get();
         return view('admin.clothes.index',compact('data'));
     }
 

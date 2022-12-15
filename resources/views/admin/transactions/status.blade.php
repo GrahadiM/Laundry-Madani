@@ -8,10 +8,10 @@
 @endpush
 
 @section('content')
-    {!! Form::model($dt, ['method' => 'PATCH', 'route' => ['admin.transactions.update', $dt->id]]) !!}
+    {!! Form::model($dt, ['method' => 'PUT', 'route' => ['admin.transactions.status_update', $dt->id]]) !!}
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Edit Data</h3>
+            <h3 class="card-title">Edit Status</h3>
             <div class="card-tools">
                 <a href="{{ url()->previous() }}" class="btn btn-danger btn-sm">Kembali</a>
             </div>
@@ -22,14 +22,6 @@
 
                 {!! Form::text('code_order', null, ['required', 'placeholder' => 'Code Order', 'class' => 'form-control']) !!}
             </div>
-            <div class="form-group">
-                <div class="mb-2"><strong>Cost : </strong></div>
-                {!! Form::number('cost', null, array('required', 'min' => '0','placeholder' => 'Cost','class' => 'form-control')) !!}
-            </div>
-            {{-- <div class="form-group">
-                <div class="mb-2"><strong>Detail : </strong></div>
-                {!! Form::text('body', null, array('required', 'placeholder' => 'Detail','class' => 'form-control')) !!}
-            </div> --}}
             <div class="form-group">
                 <strong>Status :</strong>
                 <select name="status" id="myselect" class="form-control">

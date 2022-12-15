@@ -48,19 +48,13 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'category_id' => 'required',
-            'name' => 'required',
-            'body' => 'required',
+            'cost' => 'required',
+            'status' => 'required',
         ]);
 
         $dt = new Transaction;
-        $dt->category_id = $request->category_id;
-        $dt->name = $request->name;
-        $dt->slug = Str::slug($request->name);
-        $dt->price = $request->price;
-        $dt->qty = $request->qty;
-        $dt->type = $request->type;
-        $dt->body = $request->body;
+        $dt->cost = $request->cost;
+        $dt->status = $request->status;
         $dt->created_at = now();
         $dt->save();
 
@@ -86,6 +80,27 @@ class TransactionController extends Controller
         return view('admin.transactions.show',compact('dt'));
     }
 
+    public function status($id)
+    {
+        $dt = Transaction::find($id);
+        $categories = Category::all();
+        return view('admin.transactions.status',compact('dt','categories'));
+    }
+
+    public function status_update(Request $request, $id)
+    {
+        request()->validate([
+            'status' => 'required',
+        ]);
+        $dt = Transaction::find($id);
+        $dt->status = $request->status;
+        $dt->created_at = now();
+        $dt->update();
+
+        return redirect()->route('admin.transactions.index')
+                        ->with('success','Transaction updated successfully');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -109,19 +124,14 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'category_id' => 'required',
-            'name' => 'required',
-            'body' => 'required',
+            'cost' => 'required',
+            'status' => 'required',
         ]);
         $dt = Transaction::find($id);
-        $dt->category_id = $request->category_id;
-        $dt->name = $request->name;
-        $dt->slug = Str::slug($request->name);
-        $dt->price = $request->price;
-        $dt->qty = $request->qty;
-        $dt->type = $request->type;
-        $dt->body = $request->body;
-        $dt->created_at = now();
+        $dt->cost = $request->cost;
+        $dt->status = $request->status;
+        $dt->tgl_penerimaan = now();
+        // $dt->tgl_pengambilan = $request->tgl_pengambilan;
         $dt->update();
 
         return redirect()->route('admin.transactions.index')
