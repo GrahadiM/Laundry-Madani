@@ -16,8 +16,8 @@
         <div class="card-header">
             <h3 class="card-title">{{ trans('menu.clothes.title') }}</h3>
             <div class="card-tools">
-                <a href="{{ route('admin.transactions.index') }}" class="btn btn-danger btn-sm">Kembali</a>
-                <a href="{{ route('admin.clothes.edit', $tr->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
+                <a href="{{ route('pegawai.transactions.index') }}" class="btn btn-danger btn-sm">Kembali</a>
+                <a href="{{ route('pegawai.clothes.edit', $tr->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
             </div>
         </div>
         <!-- /.card-header -->
@@ -40,9 +40,24 @@
                         <td>{{ $dt->detail }}</td>
                         <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
-                            <form action="{{ route('admin.clothes.destroy', $dt->id) }}" class="row" method="POST">
+                            <form action="{{ route('pegawai.clothes.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
                                 @csrf
+                                {{-- <div class="col-md-3">
+                                    <a class="btn btn-info btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-success btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('pegawai.clothes.edit', $dt->id) }}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </div> --}}
                                 <div class="col-md-3">
                                     <button class="btn btn-danger btn-sm" type="submit">
                                         <i class="fas fa-trash"></i>

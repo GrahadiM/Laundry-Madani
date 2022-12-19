@@ -1,5 +1,5 @@
 @extends('layouts.adm.base')
-@section('title', trans('menu.clothes.title'))
+@section('title', trans('menu.transaction.title'))
 
 @push('style')
 
@@ -14,35 +14,67 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ trans('menu.clothes.title') }}</h3>
-            <div class="card-tools">
-                <a href="{{ route('admin.transactions.index') }}" class="btn btn-danger btn-sm">Kembali</a>
-                <a href="{{ route('admin.clothes.edit', $tr->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
-            </div>
+            <h3 class="card-title">{{ trans('menu.transaction.title') }}</h3>
+            {{-- <div class="card-tools">
+                <a href="{{ route('pegawai.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
+            </div> --}}
         </div>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        {{-- <th>Code Order</th> --}}
-                        <th>Name</th>
-                        <th>Detail</th>
+                        <th>Code</th>
+                        <th>Customer</th>
+                        <th>Category & Package</th>
+                        <th>Price/Qty</th>
+                        <th>Cost</th>
+                        <th>Order By</th>
+                        <th>Status</th>
                         <th>Tanggal</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($data as $key => $dt)
+                    @foreach ($data as $key => $dt)
                     <tr>
-                        {{-- <td>{{ $dt->transaction->code_order }}</td> --}}
-                        <td>{{ $dt->name }}</td>
-                        <td>{{ $dt->detail }}</td>
+                        <td>{{ $dt->code_order }}</td>
+                        <td>{{ $dt->customer->name }}</td>
+                        <td>{{ $dt->package->category->name.' - '.$dt->package->name }}</td>
+                        <td>{{ __('Rp.').number_format($dt->package->price,2,',','.').'/'.$dt->package->qty.$dt->package->type }}</td>
+                        <td>{{ __('Rp.').number_format($dt->cost,2,',','.') }}</td>
+                        <td>{{ $dt->order_by }}</td>
+                        <td>
+                            @if ($dt->status == 'Pending')
+                                <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
+                            @elseif ($dt->status == 'Proses')
+                                <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
+                            @elseif ($dt->status == 'Success')
+                                <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
+                            @else
+                                <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
+                            @endif
+                        </td>
                         <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
-                            <form action="{{ route('admin.clothes.destroy', $dt->id) }}" class="row" method="POST">
+                            <form action="{{ route('pegawai.transactions.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
                                 @csrf
+                                <div class="col-md-3">
+                                    <a class="btn btn-info btn-sm" href="{{ route('pegawai.transactions.show', $dt->id) }}">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-success btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('pegawai.transactions.edit', $dt->id) }}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </div>
                                 <div class="col-md-3">
                                     <button class="btn btn-danger btn-sm" type="submit">
                                         <i class="fas fa-trash"></i>
@@ -51,17 +83,17 @@
                             </form>
                         </td>
                     </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5"><center>Data Kosong!</center></td>
-                    </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        {{-- <th>Code Order</th> --}}
-                        <th>Name</th>
-                        <th>Detail</th>
+                        <th>Code</th>
+                        <th>Customer</th>
+                        <th>Category & Package</th>
+                        <th>Price/Qty</th>
+                        <th>Cost</th>
+                        <th>Order By</th>
+                        <th>Status</th>
                         <th>Tanggal</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>

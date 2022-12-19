@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    {!! Form::open(['route' => 'admin.clothes.store', 'method' => 'POST']) !!}
+    {!! Form::open(['route' => 'pegawai.clothes.store', 'method' => 'POST']) !!}
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Create New Data</h3>

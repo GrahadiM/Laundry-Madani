@@ -85,9 +85,9 @@
                                                 placeholder="WhatsApp atau No.Telp" required />
                                             <input class="col-12" type="text" name="address" placeholder="Alamat" required />
                                             <select class="list-dt col-12" id="order_by" name="order_by" required>
-                                                <option selected disabled>Apakah anda memerlukan kurir?</option>
-                                                <option value="Ya">Ya</option>
-                                                <option value="Tidak">Tidak</option>
+                                                {{-- <option selected disabled>Apakah anda memerlukan kurir?</option> --}}
+                                                <option value="Ya">Menggunakan Kurir</option>
+                                                <option value="Tidak" selected>Tidak Menggunakan Kurir</option>
                                             </select>
                                         </div>
                                     </div>

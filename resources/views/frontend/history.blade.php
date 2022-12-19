@@ -43,7 +43,18 @@
                                     <td scope="col">{{ $item->phone }}</td>
                                     <td scope="col">{{ $item->address }}</td>
                                     <td scope="col">{{ $item->order_by }}</td>
-                                    <td scope="col">{{ $item->status }}</td>
+                                    <td scope="col">
+                                        {{-- {{ $item->status }} --}}
+                                        @if ($item->status == 'Pending')
+                                            <h5><span class="badge badge-pill badge-secondary">{{ $item->status }}</span></h5>
+                                        @elseif ($item->status == 'Proses')
+                                            <h5><span class="badge badge-pill badge-warning">{{ $item->status }}</span></h5>
+                                        @elseif ($item->status == 'Success')
+                                            <h5><span class="badge badge-pill badge-succes">{{ $item->status }}</span></h5>
+                                        @else
+                                            <h5><span class="badge badge-pill badge-danger">{{ $item->status }}</span></h5>
+                                        @endif
+                                    </td>
                                     {{-- <td scope="col">{{  __('Rp.').number_format($item->total,2,',','.') }}</td> --}}
                                     <td scope="col">{{ __('Rp.').number_format($item->package->price,2,',','.').'/'.$item->package->qty.$item->package->type }}</td>
                                     <td scope="col">

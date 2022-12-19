@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Pegawai;
 
 use App\Models\Clothes;
 use App\Models\Transaction;
@@ -34,7 +34,7 @@ class ClothesController extends Controller
      */
     public function create()
     {
-        return view('admin.clothes.create');
+        return view('pegawai.clothes.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ClothesController extends Controller
         $dt->created_at = now();
         $dt->save();
 
-        return redirect()->route('admin.clothes.show', $request->tr_id)
+        return redirect()->route('pegawai.clothes.show', $request->tr_id)
                         ->with('success','Transaction created successfully.');
     }
 
@@ -72,13 +72,13 @@ class ClothesController extends Controller
     {
         $tr = Transaction::find($id);
         $data = Clothes::where('transaction_id', $id)->get();
-        return view('admin.clothes.index',compact('data','tr'));
+        return view('pegawai.clothes.index',compact('data','tr'));
     }
 
     public function clothes_detail(Request $request ,$id)
     {
         $data = Clothes::with('transaction')->where('transaction_id', $id)->get();
-        return view('admin.clothes.index',compact('data'));
+        return view('pegawai.clothes.index',compact('data'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ClothesController extends Controller
     public function edit($id)
     {
         $tr = Transaction::find($id);
-        return view('admin.clothes.edit',compact('tr'));
+        return view('pegawai.clothes.edit',compact('tr'));
     }
 
     /**

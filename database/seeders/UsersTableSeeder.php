@@ -27,13 +27,38 @@ class UsersTableSeeder extends Seeder
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
-        $role = Role::create(['name' => 'customer']);
+        $roleUser = Role::create(['name' => 'customer']);
         $permissions = [
             'transaction-list',
             'history-list',
         ];
-        $role->syncPermissions($permissions);
-        $user->assignRole([$role->id]);
+        $roleUser->syncPermissions($permissions);
+        $user->assignRole([$roleUser->id]);
+
+        $pegawai = User::create([
+            'name' => 'Pegawai',
+            'email' => 'pegawai@test.com',
+            'username' => 'pegawai',
+            'avatar' => 'default-user.jpg',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+        $rolePegawai = Role::create(['name' => 'pegawai']);
+        $permissions = [
+            'transaction-list',
+            'history-list',
+            'clothes-list',
+            'clothes-create',
+            'clothes-edit',
+            'clothes-delete',
+            'transactions-list',
+            'transactions-create',
+            'transactions-edit',
+            'transactions-delete',
+        ];
+        $rolePegawai->syncPermissions($permissions);
+        $pegawai->assignRole([$rolePegawai->id]);
 
         // $users = [];
         // $faker = Factory::create();

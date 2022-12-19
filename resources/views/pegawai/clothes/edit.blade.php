@@ -9,18 +9,7 @@
 
 @section('content')
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    {!! Form::open(['route' => 'admin.clothes.store', 'method' => 'POST']) !!}
+    {!! Form::open(['route' => 'pegawai.clothes.store', 'method' => 'POST']) !!}
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Create New Data</h3>
@@ -29,13 +18,14 @@
             </div>
         </div>
         <div class="card-body">
+            <input type="hidden" name="tr_id" id="tr" value="{{ $tr->id }}" required>
             <div class="form-group">
                 <div class="mb-2"><strong>Name:</strong></div>
                 {!! Form::text('name', null, ['required', 'placeholder' => 'Name', 'class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 <div class="mb-2"><strong>Qty:</strong></div>
-                {!! Form::text('qty', null, ['required', 'placeholder' => 'Qty', 'class' => 'form-control']) !!}
+                {!! Form::number('qty', null, ['required', 'min=1', 'placeholder' => 'Qty', 'class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 <div class="mb-2"><strong>Detail:</strong></div>

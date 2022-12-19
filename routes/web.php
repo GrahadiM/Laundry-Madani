@@ -8,11 +8,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ClothesController;
 use App\Http\Controllers\Admin\PackageController;
+use App\Http\Controllers\Admin\CategoryController;
+// use App\Http\Controllers\Admin\ClothesController;
+// use App\Http\Controllers\Admin\TransactionController;
+// use App\Http\Controllers\Pegawai\ClothesController;
+// use App\Http\Controllers\Pegawai\TransactionController;
 use App\Http\Controllers\Admin\SettingWebsiteController;
-use App\Http\Controllers\Admin\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,18 +67,27 @@ Route::group(['middleware' => ['xss']], function () {
         });
     });
 
+    Route::middleware(['auth'])->prefix('pegawai')->name('pegawai.')->group(function() {
+        Route::resource('transactions', App\Http\Controllers\Pegawai\TransactionController::class);
+        Route::controller(App\Http\Controllers\Pegawai\TransactionController::class)->name('transactions.')->group(function () {
+            Route::get('/status/{id}', 'status')->name('status');
+            Route::put('/status/{id}', 'status_update')->name('status_update');
+        });
+        Route::resource('clothes', App\Http\Controllers\Pegawai\ClothesController::class);
+    });
+
     Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function() {
 
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('packages', PackageController::class);
-        Route::resource('transactions', TransactionController::class);
-        Route::controller(TransactionController::class)->name('transactions.')->group(function () {
+        Route::resource('transactions', App\Http\Controllers\Admin\TransactionController::class);
+        Route::controller(App\Http\Controllers\Admin\TransactionController::class)->name('transactions.')->group(function () {
             Route::get('/status/{id}', 'status')->name('status');
             Route::put('/status/{id}', 'status_update')->name('status_update');
         });
-        Route::resource('clothes', ClothesController::class);
+        Route::resource('clothes', App\Http\Controllers\Admin\ClothesController::class);
 
         Route::controller(SettingWebsiteController::class)->prefix('setting')->name('setting.')->group(function () {
             Route::get('website', 'index')->name('index');

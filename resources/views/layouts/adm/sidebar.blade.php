@@ -28,6 +28,22 @@
                                 <p>{{ trans('menu.dashboard.title') }}</p>
                             </a>
                         </li>
+                        @if (auth()->user()->hasRole('pegawai'))
+                        <li class="nav-item {{ Request::is('pegawai/transactions*') || Request::is('pegawai/clothes*') || Request::is('pegawai/status*')  ? 'menu-is-opening menu-open' : '' }}">
+                            <a href="#" class="nav-link {{ Request::is('pegawai/home*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>{{ trans('menu.transactionManagement.title') }} <i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('pegawai.transactions.index') }}" class="nav-link {{ Request::is('pegawai/transactions*') || Request::is('pegawai/clothes*') || Request::is('pegawai/status*') ? 'active' : '' }}">
+                                        <i class="fas fa-angle-right nav-icon"></i>
+                                        <p>{{ trans('menu.transaction.title') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @endif
                         @if (auth()->user()->hasRole('admin'))
                         <li class="nav-item {{ Request::is('admin/categories*') || Request::is('admin/packages*')  ? 'menu-is-opening menu-open' : '' }}">
                             <a href="#" class="nav-link {{ Request::is('admin/home*') ? 'active' : '' }}">
@@ -49,14 +65,14 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item {{ Request::is('admin/transactions*')  ? 'menu-is-opening menu-open' : '' }}">
+                        <li class="nav-item {{ Request::is('admin/transactions*') || Request::is('admin/clothes*') || Request::is('admin/status*')  ? 'menu-is-opening menu-open' : '' }}">
                             <a href="#" class="nav-link {{ Request::is('admin/home*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>{{ trans('menu.transactionManagement.title') }} <i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.transactions.index') }}" class="nav-link {{ Request::is('admin/transactions*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.transactions.index') }}" class="nav-link {{ Request::is('admin/transactions*') || Request::is('admin/clothes*') || Request::is('admin/status*') ? 'active' : '' }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>{{ trans('menu.transaction.title') }}</p>
                                     </a>

@@ -41,6 +41,18 @@ class HomeController extends Controller
                 'proses' => $data['proses'],
             ]);
         }
+        elseif (auth()->user()->hasRole('pegawai')) {
+            $data['pending'] = Transaction::with('customer','package','employe','category')->where('status', 'Pending')->latest('id')->get();
+            $data['proses'] = Transaction::with('customer','package','employe','category')->where('status', 'Proses')->latest('id')->get();
+
+            return view('pegawai.dashboard.index', [
+                'title' => 'Dashboard',
+                // 'user' => User::all()->count(),
+                'transaction' => Transaction::all()->count(),
+                'pending' => $data['pending'],
+                'proses' => $data['proses'],
+            ]);
+        }
         else {
             return redirect()->route('fe.index');
         }

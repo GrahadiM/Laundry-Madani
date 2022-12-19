@@ -1,5 +1,5 @@
 @extends('layouts.adm.base')
-@section('title', trans('menu.clothes.title'))
+@section('title', trans('menu.transaction.title'))
 
 @push('style')
 @endpush

@@ -11,7 +11,7 @@
 
         <h3 class="mb-3">{{ $title }}</h3>
         <div class="row">
-            <div class="col-lg-3 col-6">
+            {{-- <div class="col-lg-3 col-6">
                 <!-- small card -->
                 <div class="small-box bg-primary">
                 <div class="inner">
@@ -21,41 +21,11 @@
                     <div class="icon">
                         <i class="far fa-address-card"></i>
                     </div>
-                    <a href="{{ route('admin.users.index') }}" class="small-box-footer">
+                    <a href="{{ route('pegawai.users.index') }}" class="small-box-footer">
                         Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
                     </a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small card -->
-                <div class="small-box bg-primary">
-                <div class="inner">
-                        <h3>{{ $category }}</h3>
-                        <p>Data Kategori</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-clipboard-list"></i>
-                    </div>
-                    <a href="{{ route('admin.categories.index') }}" class="small-box-footer">
-                        Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <!-- small card -->
-                <div class="small-box bg-primary">
-                <div class="inner">
-                        <h3>{{ $package }}</h3>
-                        <p>Data Paket</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <a href="{{ route('admin.packages.index') }}" class="small-box-footer">
-                        Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
-                    </a>
-                </div>
-            </div>
+            </div> --}}
             <div class="col-lg-3 col-6">
                 <!-- small card -->
                 <div class="small-box bg-success">
@@ -66,7 +36,7 @@
                     <div class="icon">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <a href="{{ route('admin.transactions.index') }}" class="small-box-footer">
+                    <a href="{{ route('pegawai.transactions.index') }}" class="small-box-footer">
                         Tampilkan Data <i class="fas fa-arrow-circle-right ml-1"></i>
                     </a>
                 </div>
@@ -77,7 +47,7 @@
             <div class="card-header">
                 <h3 class="card-title">Data Pesanan Baru</h3>
                 {{-- <div class="card-tools">
-                    <a href="{{ route('admin.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
+                    <a href="{{ route('pegawai.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
                 </div> --}}
             </div>
             <!-- /.card-header -->
@@ -107,27 +77,27 @@
                             <td>{{ $dt->order_by }}</td>
                             <td>
                                 @if ($dt->status == 'Pending')
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
                                 @elseif ($dt->status == 'Proses')
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
                                 @elseif ($dt->status == 'Success')
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
                                 @else
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
                                 @endif
                             </td>
                             <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                             <td class="text-center">
-                                {{-- <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET" class="row">
+                                {{-- <form action="{{ route('pegawai.clothes.show', $dt->id) }}" method="GET" class="row">
                                 @csrf --}}
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <a class="btn btn-info btn-sm" href="{{ route('admin.transactions.show', $dt->id) }}">
+                                        <a class="btn btn-info btn-sm" href="{{ route('pegawai.transactions.show', $dt->id) }}">
                                             <i class="fas fa-search"></i>
                                         </a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                        <a class="btn btn-success btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
                                             <i class="fas fa-clipboard-list"></i>
                                         </a>
                                         {{-- <button class="btn btn-success btn-sm" type="submit">
@@ -165,7 +135,7 @@
             <div class="card-header">
                 <h3 class="card-title">Data Pesanan Dalam Pengerjaan</h3>
                 {{-- <div class="card-tools">
-                    <a href="{{ route('admin.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
+                    <a href="{{ route('pegawai.transactions.create') }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.transaction.title') }}</a>
                 </div> --}}
             </div>
             <!-- /.card-header -->
@@ -195,26 +165,26 @@
                             <td>{{ $dt->order_by }}</td>
                             <td>
                                 @if ($dt->status == 'Pending')
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
                                 @elseif ($dt->status == 'Proses')
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
                                 @elseif ($dt->status == 'Success')
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
                                 @else
-                                    <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
+                                    <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
                                 @endif
                             </td>
                             <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                             <td class="text-center">
-                                <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET" class="row">
+                                <form action="{{ route('pegawai.clothes.show', $dt->id) }}" method="GET" class="row">
                                     @csrf
                                     <div class="col-md-3">
-                                        <a class="btn btn-info btn-sm" href="{{ route('admin.transactions.show', $dt->id) }}">
+                                        <a class="btn btn-info btn-sm" href="{{ route('pegawai.transactions.show', $dt->id) }}">
                                             <i class="fas fa-search"></i>
                                         </a>
                                     </div>
                                     <div class="col-md-3">
-                                        {{-- <a class="btn btn-success btn-sm" href="{{ route('admin.clothes.show', $dt->id) }}">
+                                        {{-- <a class="btn btn-success btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
                                             <i class="fas fa-clipboard-list"></i>
                                         </a> --}}
                                         <button class="btn btn-success btn-sm" type="submit">
