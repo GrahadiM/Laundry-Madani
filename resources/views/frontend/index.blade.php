@@ -143,12 +143,15 @@
                                         Cuci, Kering, Setrika
                                     </p>
                                     <ol>
-                                        <li>Deep Cleaning / Dry Cleaning di hanger</li>
-                                        <li>Deep Cleaning (dilipat I ps/1 pack pakai karton punggung)</li>
-                                        <li>Kiloan Premium</li>
-                                        <li>KK 20 ( Bed cover dan Sejenisnya)</li>
-                                        <li>KK 25 ( Karpet dan Sejenisnya)</li>
-                                        <li>KK 50 (Spotting Noda)</li>
+                                        @foreach ($service1 as $item)
+                                            <li>
+                                                @guest
+                                                <a href="{{ route('login') }}">{{ $item->name }}</a>
+                                                @else
+                                                <a href="{{ route('fe.service.detail', $item->slug) }}">{{ $item->name }}</a>
+                                                @endguest
+                                            </li>
+                                        @endforeach
                                     </ol>
                                 </div>
                             </div>
@@ -202,9 +205,15 @@
                                 <h5>Paket Setrika Aja</h5>
                                 <div class="text-left">
                                     <ol>
-                                        <li>Deep Cleaning / Dry Cleaning di hanger</li>
-                                        <li>Deep Cleaning (dilipat I ps/1 pack pakai karton punggung)</li>
-                                        <li>Kiloan Premium</li>
+                                        @foreach ($service3 as $item)
+                                            <li>
+                                                @guest
+                                                <a href="{{ route('login') }}">{{ $item->name }}</a>
+                                                @else
+                                                <a href="{{ route('fe.service.detail', $item->slug) }}">{{ $item->name }}</a>
+                                                @endguest
+                                            </li>
+                                        @endforeach
                                     </ol>
                                 </div>
                             </div>

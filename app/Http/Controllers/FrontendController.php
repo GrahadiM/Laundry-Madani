@@ -16,7 +16,9 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $data['service1'] = Package::where('id', '<=' , 6)->get();
+        $data['service3'] = Package::where('id', '>=' , 13)->where('id', '<=' , 15)->get();
+        return view('frontend.index', $data);
     }
     public function about()
     {
