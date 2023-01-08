@@ -3,7 +3,7 @@
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="brand-link bg-gray-dark text-center">
                 {{-- <img src="{{ \Setting::getSetting()->logo == null ? Storage::url('public/images/setting/logo_default.png') : Storage::disk('local')->url('public/images/setting/'.\Setting::getSetting()->logo) }}" alt="{{ config('app.name', 'Laravel') }}" class="brand-image elevation-3" style="opacity: .8"> --}}
-                <span class="brand-text font-weight-bold text-uppercase">{{ config('app.name', \Setting::getSetting()->name_web) }}</span>
+                <span class="brand-text font-weight-bold text-uppercase">{{ \Setting::getSetting()->title_web }}</span>
             </a>
 
             <!-- Sidebar -->
