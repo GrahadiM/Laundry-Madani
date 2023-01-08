@@ -12,10 +12,10 @@ class TransactionController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:transactions-list|transactions-create|transactions-edit|transactions-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:transactions-create', ['only' => ['create','store']]);
-         $this->middleware('permission:transactions-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:transactions-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:transactions-list|transactions-create|transactions-edit|transactions-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:transactions-create', ['only' => ['create','store']]);
+        $this->middleware('permission:transactions-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:transactions-delete', ['only' => ['destroy']]);
     }
 
     /**
