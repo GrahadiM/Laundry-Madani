@@ -11,12 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RiwayatController;
-// use App\Http\Controllers\Admin\ClothesController;
-// use App\Http\Controllers\Admin\TransactionController;
-// use App\Http\Controllers\Pegawai\ClothesController;
-// use App\Http\Controllers\Pegawai\TransactionController;
 use App\Http\Controllers\Admin\SettingWebsiteController;
-use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
