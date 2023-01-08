@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RiwayatController extends Controller
 {
@@ -12,10 +14,31 @@ class RiwayatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Transaction::with('customer','package','employe','category')->latest('id')->get();
-        return view('admin.transactions.index',compact('data'));
+        // dd($request->all());
+        $day = Carbon::now()->format('d');
+        $month = Carbon::now()->addMonth(1)->format('m');
+        $year = Carbon::now()->format('Y');
+        if ($request->day) {
+            $data['data'] = Transaction::whereDate($day);
+        } elseif ($request->month) {
+            $data['data'] = Transaction::with('customer')->where('MONTH(tgl_penjemputan)', $month )->latest('id')->get();
+        } elseif ($request->year) {
+            $data['data'] = Transaction::with('customer')->where('YEAR(tgl_penjemputan)', $year )->latest('id')->get();
+        } else {
+            $data['data'] = Transaction::with('customer')->latest('id')->get();
+        }
+
+        $data['total'] = 0;
+        foreach ($data['data'] as $item) {
+            $data['total'] += $item->total;
+        }
+        return view('admin.riwayat.index', $data, [
+            'day' => $day,
+            'month' => $month,
+            'year' => $year,
+        ]);
     }
 
     /**

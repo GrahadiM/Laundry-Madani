@@ -54,13 +54,13 @@
                         </tbody>
                         <tfoot>
                             <tr class="text-center">
-                                <td class="font-weight-bold">Total</td>
-                                <td class="font-weight-bold text-right" colspan="4">{{ __('Rp.').number_format($total,2,',','.') }}</td>
+                                <td class="font-weight-bold text-left" colspan="4">Total</td>
+                                <td class="font-weight-bold text-right">{{ __('Rp.').number_format($total,2,',','.') }}</td>
                             </tr>
                             <tr>
                                 <td class="font-weight-bold" colspan="5">
                                     <h2 class="text-center mt-4"><u>Silahkan sesuaikan alamat dan nomer whatsapp anda pada formulir dibawah ini!</u></h2>
-                                    <form action="{{ route('fe.post_checkout') }}" method="POST" class="mt-5">
+                                    <form action="{{ route('fe.post_checkout') }}" method="POST" class="mt-5" enctype="multipart/form-data">
                                         @csrf
 
                                         <input required type="hidden" name="total" value="{{ Auth::user()->hasRole('customer') ? $total : 0 }}">
@@ -76,6 +76,12 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        {{-- <div class="form-group row">
+                                            <label for="bukti_tf" class="col-sm-2 col-form-label">Bukti Pembayaran</label>
+                                            <div class="col-sm-10">
+                                                <input required type="file" class="form-control" name="bukti_tf" id="bukti_tf">
+                                            </div>
+                                        </div> --}}
                                         <div class="form-group row">
                                             <label for="address" class="col-sm-2 col-form-label">Nomer WhatsApp</label>
                                             <div class="col-sm-10">

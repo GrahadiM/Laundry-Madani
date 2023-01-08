@@ -21,15 +21,15 @@
             <input type="hidden" name="tr_id" id="tr" value="{{ $tr->id }}" required>
             <div class="form-group">
                 <div class="mb-2"><strong>Name:</strong></div>
-                {!! Form::text('name', null, ['required', 'placeholder' => 'Name', 'class' => 'form-control']) !!}
+                {!! Form::text('name', null, ['required', 'value' => $tr->name, 'placeholder' => 'Name', 'class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 <div class="mb-2"><strong>Qty:</strong></div>
-                {!! Form::number('qty', null, ['required', 'min=1', 'placeholder' => 'Qty', 'class' => 'form-control']) !!}
+                {!! Form::number('qty', null, ['required', 'min=1', 'value' => $tr->qty, 'placeholder' => 'Qty', 'class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 <div class="mb-2"><strong>Detail:</strong></div>
-                {!! Form::text('detail', null, ['required', 'placeholder' => 'Detail', 'class' => 'form-control']) !!}
+                {!! Form::text('detail', null, ['required', 'value' => $tr->detail, 'placeholder' => 'Detail', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

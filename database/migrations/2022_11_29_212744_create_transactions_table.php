@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->string('order_by'); // pakai kurir atau tidak
             $table->string('status'); // Pending, Proses, Success
             $table->integer('total')->nullable();
+            $table->string('bukti_tf')->nullable();
             $table->timestamp('tgl_penjemputan')->nullable();
             $table->timestamp('tgl_pengantaran')->nullable();
             $table->timestamps();

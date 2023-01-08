@@ -17,7 +17,7 @@ class CreateOrderPackagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('transaction_id');
             $table->unsignedBigInteger('package_id');
-            $table->integer('qty');
+            $table->double('qty', 8, 2);
             $table->timestamps();
         });
     }

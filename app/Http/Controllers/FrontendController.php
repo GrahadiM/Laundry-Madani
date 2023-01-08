@@ -58,7 +58,8 @@ class FrontendController extends Controller
     public function post_checkout(Request $request)
     {
         $request->validate([
-            'phone' => ['required', 'min:8'],
+            'bukti_tf' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
+            'phone' => 'required|min:8',
             'address' => 'required',
             'order_by' => 'required',
             'total' => 'required',
@@ -79,7 +80,13 @@ class FrontendController extends Controller
         $atr->order_by = $request->order_by;
         $atr->tgl_penjemputan = $request->tgl_penjemputan;
         $atr->tgl_pengantaran = $request->tgl_pengantaran;
+        // $bukti_tf = $request->file('bukti_tf');
+        // $destinationPath = 'images/bukti_tf/';
+        // $buktiTF = date('YmdHis') . "." . $bukti_tf->getClientOriginalExtension();
+        // $bukti_tf->move($destinationPath, $buktiTF);
+        // $atr->bukti_tf = $buktiTF;
         $atr->save();
+        // dd($atr->all());
 
         $tr = Transaction::latest()->first();
         $carts = Cart::with('package')->where('customer_id', Auth::user()->id)->get();

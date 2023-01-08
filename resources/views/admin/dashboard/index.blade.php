@@ -89,6 +89,7 @@
                             <th>Customer</th>
                             <th>Total Harga</th>
                             <th>Jasa Kurir</th>
+                            <th>Bukti Pembayaran</th>
                             <th>Status</th>
                             <th>Tanggal</th>
                             <th>{{ trans('global.actions') }}</th>
@@ -101,6 +102,11 @@
                             <td>{{ $dt->customer->name }}</td>
                             <td>{{ __('Rp.').number_format($dt->total,2,',','.') }}</td>
                             <td>{{ $dt->order_by }}</td>
+                            <td>
+                                <a href="{{ asset('images/bukti_tf/').'/'.$dt->bukti_tf }}" target="_blank">
+                                    <img src="{{ asset('images/bukti_tf/').'/'.$dt->bukti_tf }}" class="img-fluid" style="height:50px !important;" alt="">
+                                </a>
+                            </td>
                             <td>
                                 @if ($dt->status == 'Pending')
                                     <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
@@ -140,17 +146,6 @@
                         </tr>
                         @endforelse
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Code</th>
-                            <th>Customer</th>
-                            <th>Total Harga</th>
-                            <th>Jasa Kurir</th>
-                            <th>Status</th>
-                            <th>Tanggal</th>
-                            <th>{{ trans('global.actions') }}</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

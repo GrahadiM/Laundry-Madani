@@ -17,7 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('package_id');
-            $table->integer('qty');
+            $table->double('qty', 8, 2);
             $table->timestamps();
         });
     }

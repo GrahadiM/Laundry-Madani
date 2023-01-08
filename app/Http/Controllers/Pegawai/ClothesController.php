@@ -89,7 +89,7 @@ class ClothesController extends Controller
      */
     public function edit($id)
     {
-        $tr = Transaction::find($id);
+        $tr = Clothes::with('transaction')->findOrFail($id);
         return view('pegawai.clothes.edit',compact('tr'));
     }
 

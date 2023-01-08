@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\RiwayatController;
 // use App\Http\Controllers\Admin\ClothesController;
 // use App\Http\Controllers\Admin\TransactionController;
 // use App\Http\Controllers\Pegawai\ClothesController;
@@ -87,6 +88,7 @@ Route::group(['middleware' => ['xss']], function () {
         Route::resource('categories', CategoryController::class);
         Route::resource('packages', PackageController::class);
         Route::resource('transactions', App\Http\Controllers\Admin\TransactionController::class);
+        Route::resource('riwayat', RiwayatController::class);
         Route::controller(App\Http\Controllers\Admin\TransactionController::class)->name('transactions.')->group(function () {
             Route::get('/status/{id}', 'status')->name('status');
             Route::put('/status/{id}', 'status_update')->name('status_update');

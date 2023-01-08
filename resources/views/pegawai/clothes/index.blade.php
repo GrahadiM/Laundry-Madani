@@ -27,8 +27,8 @@
                     <tr>
                         {{-- <th>Code Order</th> --}}
                         <th>Name</th>
+                        <th>Jumlah</th>
                         <th>Detail</th>
-                        <th>Tanggal</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </thead>
@@ -37,8 +37,8 @@
                     <tr>
                         {{-- <td>{{ $dt->transaction->code_order }}</td> --}}
                         <td>{{ $dt->name }}</td>
+                        <td>{{ $dt->qty }}</td>
                         <td>{{ $dt->detail }}</td>
-                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
                             <form action="{{ route('pegawai.clothes.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
@@ -72,15 +72,6 @@
                     </tr>
                     @endforelse
                 </tbody>
-                <tfoot>
-                    <tr>
-                        {{-- <th>Code Order</th> --}}
-                        <th>Name</th>
-                        <th>Detail</th>
-                        <th>Tanggal</th>
-                        <th>{{ trans('global.actions') }}</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>
