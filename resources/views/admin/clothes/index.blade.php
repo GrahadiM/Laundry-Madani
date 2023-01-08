@@ -17,7 +17,7 @@
             <h3 class="card-title">{{ trans('menu.clothes.title') }}</h3>
             <div class="card-tools">
                 <a href="{{ route('admin.transactions.index') }}" class="btn btn-danger btn-sm">Kembali</a>
-                <a href="{{ route('admin.clothes.edit', $tr->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
+                {{-- <a href="{{ route('admin.clothes.edit', $tr->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a> --}}
             </div>
         </div>
         <!-- /.card-header -->
@@ -28,8 +28,8 @@
                         {{-- <th>Code Order</th> --}}
                         <th>Name</th>
                         <th>Detail</th>
-                        <th>Tanggal</th>
-                        <th>{{ trans('global.actions') }}</th>
+                        <th>Jumlah</th>
+                        {{-- <th>{{ trans('global.actions') }}</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -38,8 +38,8 @@
                         {{-- <td>{{ $dt->transaction->code_order }}</td> --}}
                         <td>{{ $dt->name }}</td>
                         <td>{{ $dt->detail }}</td>
-                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
-                        <td class="text-center">
+                        <td>{{ $dt->qty }}</td>
+                        {{-- <td class="text-center">
                             <form action="{{ route('admin.clothes.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
                                 @csrf
@@ -49,7 +49,7 @@
                                     </button>
                                 </div>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
                     @empty
                     <tr>
@@ -57,15 +57,6 @@
                     </tr>
                     @endforelse
                 </tbody>
-                <tfoot>
-                    <tr>
-                        {{-- <th>Code Order</th> --}}
-                        <th>Name</th>
-                        <th>Detail</th>
-                        <th>Tanggal</th>
-                        <th>{{ trans('global.actions') }}</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

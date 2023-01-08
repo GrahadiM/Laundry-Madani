@@ -25,9 +25,6 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
-                        <th>Slug</th>
-                        <th>Detail</th>
-                        <th>Date</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </thead>
@@ -35,9 +32,6 @@
                     @foreach ($data as $key => $dt)
                     <tr>
                         <td>{{ $dt->name }}</td>
-                        <td>{{ $dt->slug }}</td>
-                        <td>{{ $dt->detail == null ? '-' : $dt->detail }}</td>
-                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
                             <form action="{{ route('admin.categories.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
@@ -65,9 +59,6 @@
                 <tfoot>
                     <tr>
                         <th>Nama</th>
-                        <th>Slug</th>
-                        <th>Detail</th>
-                        <th>Date</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </tfoot>

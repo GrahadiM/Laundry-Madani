@@ -15,6 +15,8 @@ class AddUsernameColumnToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('username')->unique()->nullable()->after('email');
+            $table->string('address')->nullable()->after('username');
+            $table->string('phone')->nullable()->after('address');
         });
     }
 

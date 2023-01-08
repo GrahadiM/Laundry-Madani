@@ -27,32 +27,8 @@
                                     <span class="avatar avatar-md" style="background-image: url({{ Storage::disk('local')->url('public/images/avatar/'.\Setting::getSetting()->logo) }})"></span>
                                 </div>
                                 <div class="col">
-                                    <h2 class="page-title">{{ auth()->user()->name }}</h2>
-                                    <div class="page-subtitle">
-                                        <div class="row">
-                                            <div class="col-auto">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="3" y1="21" x2="21" y2="21"></line><path d="M5 21v-14l8 -4v18"></path><path d="M19 21v-10l-6 -4"></path><line x1="9" y1="9" x2="9" y2="9.01"></line><line x1="9" y1="12" x2="9" y2="12.01"></line><line x1="9" y1="15" x2="9" y2="15.01"></line><line x1="9" y1="18" x2="9" y2="18.01"></line></svg>
-                                                <a href="#" class="text-reset disabled text-capitalize">{{ auth()->user()->role }}</a>
-                                            </div>
-                                            @if (auth()->user()->hasRole('admin'))
-                                                <div class="col-auto text-success">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 12l5 5l10 -10"></path></svg>
-                                                    Verified
-                                                </div>
-                                            @else
-                                                <div class="col-auto text-danger">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                                    Not Verified
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    <h2 class="page-title">Nama: {{ auth()->user()->name }}</h2>
                                 </div>
-                                {{-- <div class="col-auto d-none d-md-flex">
-                                    <a href="#" class="btn btn-primary">
-                                        Ganti Password
-                                    </a>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -72,10 +48,10 @@
                                         <label class="form-label">Nama User</label>
                                         <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}" placeholder="Masukan Nama User" required>
                                     </div>
-                                    <div class="col-12 mb-3">
+                                    {{-- <div class="col-12 mb-3">
                                         <label class="form-label">Email</label>
                                         <input type="text" class="form-control" name="email" value="{{ auth()->user()->email }}" required>
-                                    </div>
+                                    </div> --}}
                                     {{-- <div class="col-12 mb-3">
                                         <label for="formFile" class="form-label">Foto Profile</label>
                                         <input type="file" class="form-control" name="avatar" id="formFile">

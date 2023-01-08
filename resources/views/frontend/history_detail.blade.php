@@ -22,7 +22,7 @@
             <div class="client_container">
                 <div class="card border-dark mb-3">
                     <div class="card-header">
-                        <a href="{{ url()->previous() }}" class="btn btn-danger btn-sm">Kembali</a>
+                        <a href="{{ route('fe.history') }}" class="btn btn-danger btn-sm">Kembali</a>
                         <a href="{{ route('fe.clothes', $data['dt']->id) }}" class="btn btn-success btn-sm">{{ trans('global.add')." ".trans('menu.clothes.title') }}</a>
                     </div>
                     <div class="card-body">

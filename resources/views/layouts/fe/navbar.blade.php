@@ -22,12 +22,12 @@
                 <li class="nav-item {{ Request::is('service*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('fe.service') }}">Layanan</a>
                 </li>
-                <li class="nav-item {{ Request::is('testimonial*') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Request::is('testimonial*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('fe.testimonial') }}">Testimonial</a>
-                </li>
+                </li> --}}
                 @guest
                     @if (Route::has('login'))
-                        <li class="nav-item {{ Request::is('testimonial*') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('login*') ? 'active' : '' }}">
                             <a class="nav-link btn btn-outline-danger" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                     @endif
@@ -35,6 +35,9 @@
                     @if (auth()->user()->hasRole('customer'))
                         <li class="nav-item {{ Request::is('history*') || Request::is('clothes*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('fe.history') }}">Riwayat</a>
+                        </li>
+                        <li class="nav-item {{ Request::is('cart*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('fe.cart') }}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-danger" href="{{ route('logout') }}"

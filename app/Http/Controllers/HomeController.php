@@ -28,8 +28,8 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('admin')) {
-            $data['pending'] = Transaction::with('customer','package','employe','category')->where('status', 'Pending')->latest('id')->get();
-            $data['proses'] = Transaction::with('customer','package','employe','category')->where('status', 'Proses')->latest('id')->get();
+            $data['pending'] = Transaction::with('customer','employe','category')->where('status', 'Pending')->latest('id')->get();
+            $data['proses'] = Transaction::with('customer','employe','category')->where('status', 'Proses')->latest('id')->get();
 
             return view('admin.dashboard.index', [
                 'title' => 'Dashboard',
@@ -42,8 +42,8 @@ class HomeController extends Controller
             ]);
         }
         elseif (auth()->user()->hasRole('pegawai')) {
-            $data['pending'] = Transaction::with('customer','package','employe','category')->where('status', 'Pending')->latest('id')->get();
-            $data['proses'] = Transaction::with('customer','package','employe','category')->where('status', 'Proses')->latest('id')->get();
+            $data['pending'] = Transaction::with('customer','employe','category')->where('status', 'Pending')->latest('id')->get();
+            $data['proses'] = Transaction::with('customer','employe','category')->where('status', 'Proses')->latest('id')->get();
 
             return view('pegawai.dashboard.index', [
                 'title' => 'Dashboard',
@@ -54,7 +54,7 @@ class HomeController extends Controller
             ]);
         }
         else {
-            return redirect()->route('fe.index');
+            return redirect()->route('fe.service');
         }
     }
 }

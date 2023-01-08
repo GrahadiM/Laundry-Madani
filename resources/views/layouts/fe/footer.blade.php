@@ -39,9 +39,9 @@
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                             <span>{{ \Setting::getSetting()->address }}</span>
                         </p>
-                        <a href="https://api.whatsapp.com/send?phone={{ \Setting::getSetting()->wa }}" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/+6281268385500" target="_blank" rel="noopener noreferrer">
                             <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span>Call {{ \Setting::getSetting()->wa }}</span>
+                            <span>Call +6281268385500</span>
                         </a>
                         <a href="">
                             <i class="fa fa-envelope" aria-hidden="true"></i>

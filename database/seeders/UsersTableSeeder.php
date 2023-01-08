@@ -18,27 +18,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'name' => 'Customer',
-            'email' => 'customer@test.com',
-            'username' => 'customer',
-            'avatar' => 'default-user.jpg',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
-        ]);
-        $roleUser = Role::create(['name' => 'customer']);
-        $permissions = [
-            'transaction-list',
-            'history-list',
-        ];
-        $roleUser->syncPermissions($permissions);
-        $user->assignRole([$roleUser->id]);
-
         $pegawai = User::create([
-            'name' => 'Pegawai',
-            'email' => 'pegawai@test.com',
-            'username' => 'pegawai',
+            'name' => 'Kurir',
+            'email' => 'kurir@test.com',
+            'username' => 'kurir',
+            'phone' => '81268385500',
             'avatar' => 'default-user.jpg',
             'password' => bcrypt('password'),
             'email_verified_at' => now(),
@@ -59,6 +43,25 @@ class UsersTableSeeder extends Seeder
         ];
         $rolePegawai->syncPermissions($permissions);
         $pegawai->assignRole([$rolePegawai->id]);
+
+        $user = User::create([
+            'name' => 'Customer',
+            'email' => 'customer@test.com',
+            'username' => 'customer',
+            'address' => 'Jalan Suka Karya No. 80, Tuah Karya, Kecamatan Tampan, Kota Pekanbaru, Riau',
+            'phone' => '85767113554',
+            'avatar' => 'default-user.jpg',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+        $roleUser = Role::create(['name' => 'customer']);
+        $permissions = [
+            'transaction-list',
+            'history-list',
+        ];
+        $roleUser->syncPermissions($permissions);
+        $user->assignRole([$roleUser->id]);
 
         // $users = [];
         // $faker = Factory::create();

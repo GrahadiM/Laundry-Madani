@@ -29,24 +29,13 @@
                                 <div class="detail-box">
                                     <h1>KAMI MENYEDIAKAN <br> JASA LAUNDRY</h1>
                                     <p>
-                                        Penyedia layanan jasa laundry kini semakin ramai, hampir di setiap tempat, saat ini
-                                        sangat mudah sekali menemukan layanan jasa laundry, bahkan hampir di setiap daerah,
-                                        bahkan perumahan tersedia layanan jasa laundry, namun bagaimana dengan Laundry
-                                        Madani 24 jam?
-                                        Laundry Madani 24 Jam, terbilang masih sangat sedikit sekali yang menyediakan
-                                        layanan tersebut, terlebih lagi dengan hitungan pengerjaan yang sangat kilat, 3 jam,
-                                        6 jam, dan 12 jam.
+                                        Laundy Madani adalah Jasa cuci pakaian dengan mengunakan teknologi mesin otomatis yang memberikan pelayanan cepat, bersih, murah dan antar jemput, yang beralamatkan di Jalan Suka Karya No.90 Tuah Karya, Kecamatan Tampan, Kota Pekanbaru, Riau 28291 Indonesia.
                                     </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn1">
-                                            Read More
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="img-box">
-                                    <img src="{{ asset('frontend') }}/images/slider-img.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/images/ruko.jpeg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -59,24 +48,13 @@
                                 <div class="detail-box">
                                     <h1>KAMI MENYEDIAKAN <br> JASA LAUNDRY</h1>
                                     <p>
-                                        Penyedia layanan jasa laundry kini semakin ramai, hampir di setiap tempat, saat ini
-                                        sangat mudah sekali menemukan layanan jasa laundry, bahkan hampir di setiap daerah,
-                                        bahkan perumahan tersedia layanan jasa laundry, namun bagaimana dengan Laundry
-                                        Madani 24 jam?
-                                        Laundry Madani 24 Jam, terbilang masih sangat sedikit sekali yang menyediakan
-                                        layanan tersebut, terlebih lagi dengan hitungan pengerjaan yang sangat kilat, 3 jam,
-                                        6 jam, dan 12 jam.
+                                        Laundy Madani adalah Jasa cuci pakaian dengan mengunakan teknologi mesin otomatis yang memberikan pelayanan cepat, bersih, murah dan antar jemput, yang beralamatkan di Jalan Suka Karya No.90 Tuah Karya, Kecamatan Tampan, Kota Pekanbaru, Riau 28291 Indonesia.
                                     </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn1">
-                                            Read More
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="img-box">
-                                    <img src="{{ asset('frontend') }}/images/slider-img.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/images/banner.jpeg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -89,24 +67,13 @@
                                 <div class="detail-box">
                                     <h1>KAMI MENYEDIAKAN <br> JASA LAUNDRY</h1>
                                     <p>
-                                        Penyedia layanan jasa laundry kini semakin ramai, hampir di setiap tempat, saat ini
-                                        sangat mudah sekali menemukan layanan jasa laundry, bahkan hampir di setiap daerah,
-                                        bahkan perumahan tersedia layanan jasa laundry, namun bagaimana dengan Laundry
-                                        Madani 24 jam?
-                                        Laundry Madani 24 Jam, terbilang masih sangat sedikit sekali yang menyediakan
-                                        layanan tersebut, terlebih lagi dengan hitungan pengerjaan yang sangat kilat, 3 jam,
-                                        6 jam, dan 12 jam.
+                                        Laundy Madani adalah Jasa cuci pakaian dengan mengunakan teknologi mesin otomatis yang memberikan pelayanan cepat, bersih, murah dan antar jemput, yang beralamatkan di Jalan Suka Karya No.90 Tuah Karya, Kecamatan Tampan, Kota Pekanbaru, Riau 28291 Indonesia.
                                     </p>
-                                    <div class="btn-box">
-                                        <a href="" class="btn1">
-                                            Read More
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="img-box">
-                                    <img src="{{ asset('frontend') }}/images/slider-img.jpg" alt="">
+                                    <img src="{{ asset('frontend') }}/images/ruko-dalam.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -130,40 +97,14 @@
                 </p>
             </div>
             <div class="service_container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="box b1">
-                            <div class="img-box">
-                                <img src="{{ asset('frontend') }}/images/s1.png" alt="" class="" />
-                            </div>
-                            <div class="detail-box">
-                                <h5>Paket Lengkap</h5>
-                                <div class="text-left">
-                                    <p>
-                                        Cuci, Kering, Setrika
-                                    </p>
-                                    <ol>
-                                        @foreach ($service1 as $item)
-                                            <li>
-                                                @guest
-                                                <a href="{{ route('login') }}">{{ $item->name }}</a>
-                                                @else
-                                                <a href="{{ route('fe.service.detail', $item->slug) }}">{{ $item->name }}</a>
-                                                @endguest
-                                            </li>
-                                        @endforeach
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
                         <div class="box b2">
                             <div class="img-box">
                                 <img src="{{ asset('frontend') }}/images/s2.png" alt="" class="" />
                             </div>
                             <div class="detail-box">
-                                <h5>Paket Pilih Waktu</h5>
+                                <h5>Silahkan Memilih Paket Sesuai Kebutuhan Anda</h5>
                                 <div class="text-left">
                                     <p>
                                         Kami memahami Jakarta adalah kota metropolitan dengan berbagai profesi dan
@@ -172,49 +113,34 @@
                                         sesuakan dengan kebutuhan anda.
                                     </p>
                                     <div class="mt-2">
-                                        <p>
-                                            <strong>6 Paket berdasarkan Pilihan waktu</strong>
-                                        </p>
                                         <table class="table table-bordered">
                                             <tbody>
+                                                @foreach ($service as $item)
                                                 <tr>
-                                                    <td style="width: 50%; text-align: center;">3 Jam</td>
-                                                    <td style="width: 50%; text-align: center;">1 Hari</td>
+                                                    <td style="width: 5%; text-align: center;">{{ $loop->iteration }}</td>
+                                                    <td style="width: 25%;">
+                                                        @guest
+                                                        <a href="{{ route('login') }}">
+                                                        @else
+                                                        <a href="{{ route('fe.service.detail', $item->slug) }}">
+                                                        @endguest
+                                                            {{ $item->name }}
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 20%; text-align: center;">{{ $item->price."/".$item->type }}</td>
+                                                    <td style="width: 45%;">{!! $item->body !!}</td>
+                                                    <td style="width: 5%;">
+                                                        <form action="{{ route('fe.post_cart') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="package_id" value="{{ $item->id }}">
+                                                            <button class="btn btn-sm btn-outline-primary" type="submit"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td style="width: 50%; text-align: center;">6 Jam</td>
-                                                    <td style="width: 50%; text-align: center;">2 Hari</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 50%; text-align: center;">12 Jam</td>
-                                                    <td style="width: 50%; text-align: center;">3 Hari</td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="box b3">
-                            <div class="img-box">
-                                <img src="{{ asset('frontend') }}/images/s3.png" alt="" class="" />
-                            </div>
-                            <div class="detail-box">
-                                <h5>Paket Setrika Aja</h5>
-                                <div class="text-left">
-                                    <ol>
-                                        @foreach ($service3 as $item)
-                                            <li>
-                                                @guest
-                                                <a href="{{ route('login') }}">{{ $item->name }}</a>
-                                                @else
-                                                <a href="{{ route('fe.service.detail', $item->slug) }}">{{ $item->name }}</a>
-                                                @endguest
-                                            </li>
-                                        @endforeach
-                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +162,7 @@
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="img-box">
-                        <img src="{{ asset('frontend') }}/images/about-img.jpg" alt="">
+                        <img src="{{ asset('frontend') }}/images/loker.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -356,7 +282,7 @@
                 </div>
                 <div class="col-md-6 ">
                     <div class="img-box">
-                        <img src="{{ asset('frontend') }}/images/about-img2.jpg" alt="">
+                        <img src="{{ asset('frontend') }}/images/mesin-cuci.jpeg" alt="">
                         {{-- <div class="play_btn">
                             <button>
                                 <i class="fa fa-play" aria-hidden="true"></i>

@@ -51,12 +51,12 @@
                                 <p>{{ trans('menu.packageManagement.title') }} <i class="right fas fa-angle-left"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('admin.categories.index') }}" class="nav-link {{ Request::is('admin/categories*') ? 'active' : '' }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
                                         <p>{{ trans('menu.category.title') }}</p>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a href="{{ route('admin.packages.index') }}" class="nav-link {{ Request::is('admin/packages*') ? 'active' : '' }}">
                                         <i class="fas fa-angle-right nav-icon"></i>
@@ -104,18 +104,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ Request::is('admin/terms_of_service*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>Persyaratan Layanan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ Request::is('admin/privacy_policy*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>Kebijakan Privasi</p>
-                            </a>
                         </li>
                         @endif
                     </ul>

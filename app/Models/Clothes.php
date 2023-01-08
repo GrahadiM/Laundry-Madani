@@ -11,10 +11,12 @@ class Clothes extends Model
 
     protected $table = "clothes";
     protected $guarded = [];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+
     public function transaction()
     {
         return $this->belongsTo(Transaction::class);

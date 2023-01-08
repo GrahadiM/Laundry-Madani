@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Package;
-use App\Models\Service;
-use App\Models\Category;
+use App\Models\Cart;
 use App\Models\Clothes;
+use App\Models\Package;
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
+use App\Models\OrderPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,78 +17,114 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $data['service1'] = Package::where('id', '<=' , 6)->get();
-        $data['service3'] = Package::where('id', '>=' , 13)->where('id', '<=' , 15)->get();
+        $data['service'] = Package::latest('id')->get();
         return view('frontend.index', $data);
     }
+
     public function about()
     {
         return view('frontend.about');
     }
+
     public function service()
     {
         $data['category'] = Category::all();
-        $data['service1'] = Package::where('id', '<=' , 6)->get();
-        $data['service2'] = Package::where('id', '>=' , 7)->where('id', '<=' , 12)->get();
-        $data['service3'] = Package::where('id', '>=' , 13)->where('id', '<=' , 15)->get();
-        return view('frontend.service', compact('data'));
+        $data['service'] = Package::latest('id')->get();
+        return view('frontend.service', $data);
     }
+
     public function service_detail(Request $request, Package $package)
     {
-        // $data['service'] = Package::with(['category'])->find($package);
-        // dd($data);
         return view('frontend.service_detail', compact('package'));
     }
-    public function checkout(Request $request, Package $package)
+
+    public function checkout(Request $request)
     {
-        // $data['service'] = Package::find($id);
-        return view('frontend.checkout', compact('package'));
+        $carts = Cart::with('package')->where('customer_id', Auth::user()->id)->get();
+        $total = 0;
+        $cost = 0;
+        foreach ($carts as $item) {
+            $total += $item['qty']*$item['package']->price;
+            $cost = $item['qty']*$item['package']->price;
+        }
+
+        return view('frontend.checkout', [
+            'data' => $carts,
+            'total' => $total,
+            'cost' => $cost,
+        ]);
     }
-    public function checkout_post(Request $request)
+
+    public function post_checkout(Request $request)
     {
         $request->validate([
-            'package_id' => ['required'],
             'phone' => ['required', 'min:8'],
-            'address' => ['required'],
-            'order_by' => ['required'],
+            'address' => 'required',
+            'order_by' => 'required',
+            'total' => 'required',
+            'status' => 'required',
+            'tgl_penjemputan' => 'required',
+            'tgl_pengantaran' => 'required',
         ]);
 
         // dd($request->all());
         $atr = new Transaction();
-        $atr->code_order = Str::random(6);
         $atr->customer_id = Auth::user()->id;
-        $atr->package_id = $request->package_id;
+        $atr->employe_id = 2;
+        $atr->code_order = rand();
+        $atr->total = $request->total;
         $atr->phone = $request->phone;
         $atr->address = $request->address;
+        $atr->status = $request->status;
         $atr->order_by = $request->order_by;
-        $atr->status = 'Pending';
-        $atr->created_at = Carbon::now();
+        $atr->tgl_penjemputan = $request->tgl_penjemputan;
+        $atr->tgl_pengantaran = $request->tgl_pengantaran;
         $atr->save();
 
-        return redirect()->route('fe.checkout.clear');
+        $tr = Transaction::latest()->first();
+        $carts = Cart::with('package')->where('customer_id', Auth::user()->id)->get();
+        foreach ($carts as $item) {
+
+            $atr = new OrderPackage;
+            $atr->transaction_id = $tr->id;
+            $atr->package_id = $item->package->id;
+            $atr->qty = $item->qty == null ? 1 : $item->qty;
+            $atr->save();
+
+            Cart::destroy($item->id);
+        }
+
+        return redirect()->route('fe.invoice')->with('Sukses', 'Data Berhasil Ditambahkan, Silahkan Melakukan Pembayaran di Tempat!');
         // return view('frontend.checkout_clear');
     }
-    public function checkout_clear(Request $request)
+
+    public function invoice()
     {
-        // $data['transaction'] = Transaction::where('status', 'Proses')->where('tgl_penerimaan', '=', NULL)->latest('id')->get()->first();
-        // return view('frontend.checkout_clear', compact('data'));
-        return view('frontend.checkout_clear');
+        $data['transaksi'] = Transaction::with('customer')->where('customer_id', Auth::user()->id)->latest('id')->first();
+        $data['items'] = OrderPackage::where('transaction_id', $data['transaksi']->id)->get();
+        return view('frontend.invoice', $data);
     }
-    public function testimonial()
+
+    public function print_invoice($id)
     {
-        return view('frontend.testimonial');
+        $data['transaksi'] = Transaction::with('customer')->where('customer_id', Auth::user()->id)->where('id', $id)->first();
+        $data['items'] = OrderPackage::where('transaction_id', $data['transaksi']->id)->get();
+        return view('frontend.invoice', $data);
     }
+
     public function history()
     {
-        $data['history'] = Transaction::with(['customer', 'package'])->where('customer_id', Auth::user()->id)->latest('id')->get();
-        return view('frontend.history', compact('data'));
+        $data['items'] = Transaction::with(['customer', 'package'])->where('customer_id', Auth::user()->id)->latest('id')->get();
+        return view('frontend.history', $data);
     }
+
     public function history_detail($id)
     {
         $data['dt'] = Transaction::find($id);
         $data['clothes'] = Clothes::with('transaction')->where('transaction_id', $id)->get();
         return view('frontend.history_detail', compact('data'));
     }
+
     public function clothes($id)
     {
         $data['dt'] = Transaction::find($id);
@@ -95,6 +132,7 @@ class FrontendController extends Controller
         // dd($data['clothes']);
         return view('frontend.clothes', compact('data'));
     }
+
     public function clothes_post(Request $request)
     {
         $request->validate([
@@ -107,11 +145,69 @@ class FrontendController extends Controller
         $atr = new Clothes();
         $atr->transaction_id = $id;
         $atr->name = $request->name;
-        $atr->qty = 1;
+        $atr->qty = $request->qty == NULL ? 1 : $request->qty;
         $atr->detail = $request->detail;
         $atr->created_at = Carbon::now();
         $atr->save();
 
         return redirect()->route('fe.history_detail', $id);
+    }
+
+    public function cart()
+    {
+        $carts = Cart::with('package')->where('customer_id', Auth::user()->id)->get();
+        $total = 0;
+        foreach ($carts as $item) {
+            $total += $item['qty']*$item['package']->price;
+        }
+
+        return view('frontend.cart', [
+            'data' => $carts,
+            'total' => $total,
+        ]);
+    }
+
+    public function post_cart(Request $request)
+    {
+        $atr = Cart::with('package')->where([
+			['customer_id', Auth::user()->id],
+			['package_id', $request->package_id],
+		])->first();
+
+		$qty = $request->qty == null ? 1 : $request->qty;
+		$new = false;
+		if (!$atr) {
+			$atr = new Cart();
+			$new = true;
+		}
+
+        $atr->customer_id = Auth::user()->id;
+        $atr->package_id = $request->package_id;
+        if ($new) {
+
+            $atr->qty = $qty;
+        } else {
+            $atr->qty = $atr->qty + $qty;
+        }
+        $atr->save();
+
+        return redirect()->route('fe.service')->with('Sukses', 'Data Berhasil Ditambahkan');
+    }
+
+    public function update_cart(Request $request, $id)
+    {
+        $atr = Cart::findOrFail($id);
+
+        $atr->qty = $request->qty;
+        $atr->update();
+
+        return back()->with('Sukses', 'Data Berhasil Diubah');
+    }
+
+    public function delete_cart($id)
+    {
+        Cart::destroy($id);
+
+        return back()->with('Sukses', 'Data Berhasil Dihapus');
     }
 }

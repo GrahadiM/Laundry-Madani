@@ -12,6 +12,7 @@ class Package extends Model
 
     protected $table = "packages";
     protected $guarded = [];
+
     public function sluggable()
     {
         return [
@@ -20,10 +21,12 @@ class Package extends Model
             ]
         ];
     }
+
     // public function getRouteKeyName()
     // {
     //     return 'slug';
     // }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

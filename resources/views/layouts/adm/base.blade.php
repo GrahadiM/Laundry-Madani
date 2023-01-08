@@ -13,7 +13,7 @@
 
 </head>
 {{-- <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed"> --}}
-<body class="layout-fixed accent-lime layout-navbar-fixed dark-mode sidebar-mini layout-footer-fixed">
+<body class="layout-fixed layout-navbar-fixed sidebar-mini layout-footer-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
 

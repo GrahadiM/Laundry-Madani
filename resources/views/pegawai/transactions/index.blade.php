@@ -26,10 +26,8 @@
                     <tr>
                         <th>Code</th>
                         <th>Customer</th>
-                        <th>Category & Package</th>
-                        <th>Price/Qty</th>
-                        <th>Cost</th>
-                        <th>Order By</th>
+                        <th>Total Harga</th>
+                        <th>Alamat</th>
                         <th>Status</th>
                         <th>Tanggal</th>
                         <th>{{ trans('global.actions') }}</th>
@@ -40,22 +38,20 @@
                     <tr>
                         <td>{{ $dt->code_order }}</td>
                         <td>{{ $dt->customer->name }}</td>
-                        <td>{{ $dt->package->category->name.' - '.$dt->package->name }}</td>
-                        <td>{{ __('Rp.').number_format($dt->package->price,2,',','.').'/'.$dt->package->qty.$dt->package->type }}</td>
-                        <td>{{ __('Rp.').number_format($dt->cost,2,',','.') }}</td>
-                        <td>{{ $dt->order_by }}</td>
+                        <td>{{ __('Rp.').number_format($dt->total,2,',','.') }}</td>
+                        <td>{{ $dt->address }}</td>
                         <td>
                             @if ($dt->status == 'Pending')
                                 <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-secondary">{{ $dt->status }}</a>
                             @elseif ($dt->status == 'Proses')
                                 <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-warning">{{ $dt->status }}</a>
                             @elseif ($dt->status == 'Success')
-                                <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-succes">{{ $dt->status }}</a>
+                                <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-success">{{ $dt->status }}</a>
                             @else
                                 <a href="{{ route('pegawai.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
                             @endif
                         </td>
-                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
+                        <td>{{ $dt->updated_at ? $dt->updated_at : $dt->created_at }}</td>
                         <td class="text-center">
                             <form action="{{ route('pegawai.transactions.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
@@ -66,38 +62,26 @@
                                     </a>
                                 </div>
                                 <div class="col-md-3">
-                                    <a class="btn btn-success btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
+                                    <a class="btn btn-primary btn-sm" href="{{ route('pegawai.clothes.show', $dt->id) }}">
                                         <i class="fas fa-clipboard-list"></i>
                                     </a>
                                 </div>
                                 <div class="col-md-3">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('pegawai.transactions.edit', $dt->id) }}">
-                                        <i class="fas fa-pencil-alt"></i>
+                                    @if ($dt->status == 'Pending' || $dt->status == 'Proses')
+                                    <a class="btn btn-success btn-sm" href="https://wa.me/+62{{ $dt->phone }}?text=Saya%20kurir%20dari%20laundry%20madani,%20ingin%20menjemput%20pakaian%20anda" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
                                     </a>
-                                </div>
-                                <div class="col-md-3">
-                                    <button class="btn btn-danger btn-sm" type="submit">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    @elseif ($dt->status == 'Success')
+                                    <a class="btn btn-success btn-sm" href="https://wa.me/+62{{ $dt->phone }}?text=Saya%20kurir%20dari%20laundry%20madani,%20ingin%20mengantar%20pakaian%20anda" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    @endif
                                 </div>
                             </form>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Code</th>
-                        <th>Customer</th>
-                        <th>Category & Package</th>
-                        <th>Price/Qty</th>
-                        <th>Cost</th>
-                        <th>Order By</th>
-                        <th>Status</th>
-                        <th>Tanggal</th>
-                        <th>{{ trans('global.actions') }}</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

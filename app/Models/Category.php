@@ -11,10 +11,12 @@ class Category extends Model
 
     protected $table = 'categories';
     protected $guarded = [];
+
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
     public function transaction()
     {
         return $this->belongsTo(Transaction::class);

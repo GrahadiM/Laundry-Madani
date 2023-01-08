@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\CategoryController;
 // use App\Http\Controllers\Pegawai\ClothesController;
 // use App\Http\Controllers\Pegawai\TransactionController;
 use App\Http\Controllers\Admin\SettingWebsiteController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +33,17 @@ Route::group(['middleware' => ['xss']], function () {
         Route::get('/', 'index')->name('index');
         Route::get('/about', 'about')->name('about');
         Route::get('/service', 'service')->name('service');
-        Route::get('/testimonial', 'testimonial')->name('testimonial');
+        // Route::get('/testimonial', 'testimonial')->name('testimonial');
+        Route::get('/service/{package:slug}', 'service_detail')->name('service.detail');
         Route::middleware(['auth'])->group(function() {
-            Route::get('/service/{package:slug}', 'service_detail')->name('service.detail');
-            // Route::get('/service/{id}', 'service_detail')->name('service.detail');
-            Route::get('/checkout/{package:slug}', 'checkout')->name('checkout');
-            // Route::get('/checkout/{id}', 'checkout')->name('checkout');
-            Route::post('/checkout_post', 'checkout_post')->name('checkout.post');
-            Route::get('/checkout_clear', 'checkout_clear')->name('checkout.clear');
+            Route::get('/cart', 'cart')->name('cart');
+            Route::post('/cart', 'post_cart')->name('post_cart');
+            Route::put('/cart/{id}', 'update_cart')->name('update_cart');
+            Route::delete('/cart/delete/{id}', 'delete_cart')->name('delete_cart');
+            Route::get('/checkout', 'checkout')->name('checkout');
+            Route::post('/checkout', 'post_checkout')->name('post_checkout');
+            Route::get('/invoice', 'invoice')->name('invoice');
+            Route::get('/invoice/{id}', 'print_invoice')->name('print_invoice');
             Route::get('/history', 'history')->name('history');
             Route::get('/history/{id}', 'history_detail')->name('history_detail');
             Route::get('/clothes/{id}', 'clothes')->name('clothes');

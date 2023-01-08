@@ -29,24 +29,10 @@
                     @if ($dt->status == 'Pending')
                         <option value="Proses">Proses</option>
                         <option value="Success">Success</option>
-                        <option value="Cancel">Cancel</option>
-                        <option value="Failed">Failed</option>
                     @elseif ($dt->status == 'Proses')
                         <option value="Success">Success</option>
-                        <option value="Cancel">Cancel</option>
-                        <option value="Failed">Failed</option>
                     @elseif ($dt->status == 'Success')
                         <option value="Proses">Proses</option>
-                        <option value="Cancel">Cancel</option>
-                        <option value="Failed">Failed</option>
-                    @elseif ($dt->status == 'Cancel')
-                        <option value="Proses">Proses</option>
-                        <option value="Success">Success</option>
-                        <option value="Failed">Failed</option>
-                    @else
-                        <option value="Proses">Proses</option>
-                        <option value="Success">Success</option>
-                        <option value="Cancel">Cancel</option>
                     @endif
                 </select>
             </div>

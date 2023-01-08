@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="img-box">
-                        <img src="{{ asset('frontend') }}/images/about-img2.jpg" alt="">
+                        <img src="{{ asset('frontend') }}/images/loker.jpeg" alt="loker">
                         {{-- <div class="play_btn">
                         <button>
                             <i class="fa fa-play" aria-hidden="true"></i>
@@ -33,7 +33,12 @@
                         <p>Nama : {{ $package->name }}</p>
                         <p>Price : {{ __('Rp.').number_format($package->price,2,',','.') .'/'. $package->qty.$package->type }}</p>
                         <p>Deskripsi : {{ $package->body }}</p>
-                        <a href="{{ route('fe.checkout', $package->slug) }}">Pesan Sekarang</a>
+                        <form action="{{ route('fe.post_cart') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="package_id" value="{{ $package->id }}">
+                            <button class="btn btn-lg btn-outline-primary" type="submit"><i class="fa fa-cart-plus" aria-hidden="true"></i> Tambahkan Ke Keranjang</button>
+                        </form>
+                        {{-- <a href="{{ route('fe.checkout', $package->slug) }}">Pesan Sekarang</a> --}}
                     </div>
                 </div>
             </div>

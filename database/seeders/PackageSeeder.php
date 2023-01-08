@@ -16,125 +16,86 @@ class PackageSeeder extends Seeder
      */
     public function run()
     {
-        // Kategori ke 1
         Package::create([
-            'name' => 'Deep Cleaning / Dry Cleaning',
-            'slug' => Str::slug('deep-cleaning-or-dry-cleaning'),
+            'name' => 'Cuci Kering Setrika',
+            'slug' => Str::slug('cuci-kering-setrika'),
             'price' => 7000,
             'qty' => 1,
-            'type' => 'Pcs',
-            'body' => 'Pembersihan baju atau cuci kering di hanger',
+            'type' => 'Kg',
+            'body' => 'Mencuci + Mengeringkan + Setrika Baju',
             'category_id' => 1,
         ]);
         Package::create([
-            'name' => 'Deep Cleaning',
-            'slug' => Str::slug('deep-cleaning'),
-            'price' => 5000,
+            'name' => 'Cuci Kering',
+            'slug' => Str::slug('cuci-kering'),
+            'price' => 6000,
             'qty' => 1,
-            'type' => 'Pcs',
-            'body' => 'Pakaian 1 pcs / 1 pack dilipat menggunakan karton punggung',
-            'category_id' => 1,
-        ]);
-        Package::create([
-            'name' => 'Kiloan Premium',
-            'slug' => Str::slug('kiloan-premium'),
-            'price' => 10000,
-            'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Laundry Kiloan',
-            'category_id' => 1,
-        ]);
-        Package::create([
-            'name' => 'KK 20',
-            'slug' => Str::slug('kk-20'),
-            'price' => 10000,
-            'qty' => 1,
-            'type' => 'Pcs',
-            'body' => 'Bed cover dan Sejenisnya',
-            'category_id' => 1,
-        ]);
-        Package::create([
-            'name' => 'KK 25',
-            'slug' => Str::slug('kk-25'),
-            'price' => 15000,
-            'qty' => 1,
-            'type' => 'Pcs',
-            'body' => 'Karpet dan Sejenisnya',
-            'category_id' => 1,
-        ]);
-        Package::create([
-            'name' => 'KK 50',
-            'slug' => Str::slug('kk-50'),
-            'price' => 20000,
-            'qty' => 1,
-            'type' => 'Pcs',
-            'body' => 'Spotting Noda',
-            'category_id' => 1,
-        ]);
-        // Kategori ke 2
-        Package::create([
-            'name' => '3 Jam',
-            'slug' => Str::slug('3-jam'),
-            'price' => 30000,
-            'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Selesai dalam waktu 3 Jam',
+            'type' => 'Kg',
+            'body' => 'Mencuci + Mengeringkan Baju',
             'category_id' => 2,
         ]);
         Package::create([
-            'name' => '6 Jam',
-            'slug' => Str::slug('6-jam'),
+            'name' => 'Setrika',
+            'slug' => Str::slug('setrika'),
+            'price' => 4000,
+            'qty' => 1,
+            'type' => 'Kg',
+            'body' => 'Setrika Saja',
+            'category_id' => 2,
+        ]);
+        Package::create([
+            'name' => 'Cuci',
+            'slug' => Str::slug('cuci'),
+            'price' => 3000,
+            'qty' => 1,
+            'type' => 'Kg',
+            'body' => 'Mencuci Saja',
+            'category_id' => 2,
+        ]);
+        Package::create([
+            'name' => 'Bed Cover',
+            'slug' => Str::slug('bed-cover'),
             'price' => 25000,
             'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Selesai dalam waktu 6 Jam',
-            'category_id' => 2,
+            'type' => 'Pcs',
+            'body' => 'Mencuci Bed Cover Saja',
+            'category_id' => 3,
         ]);
         Package::create([
-            'name' => '12 Jam',
-            'slug' => Str::slug('12-jam'),
-            'price' => 20000,
-            'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Selesai dalam waktu 12 Jam',
-            'category_id' => 2,
-        ]);
-        Package::create([
-            'name' => '1 Hari',
-            'slug' => Str::slug('1-hari'),
-            'price' => 15000,
-            'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Selesai dalam waktu 1 Hari',
-            'category_id' => 2,
-        ]);
-        Package::create([
-            'name' => '2 Hari',
-            'slug' => Str::slug('2-hari'),
-            'price' => 12000,
-            'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Selesai dalam waktu 2 Hari',
-            'category_id' => 2,
-        ]);
-        Package::create([
-            'name' => '3 Hari',
-            'slug' => Str::slug('3-hari'),
+            'name' => 'Gorden',
+            'slug' => Str::slug('gorden'),
             'price' => 10000,
             'qty' => 1,
-            'type' => 'KG',
-            'body' => 'Selesai dalam waktu 3 Hari',
-            'category_id' => 2,
+            'type' => 'Kg',
+            'body' => 'Mencuci Gorden Saja',
+            'category_id' => 3,
         ]);
-        // Kategori ke 3
         Package::create([
-            'name' => 'Ironing Clothes',
-            'slug' => Str::slug('ironing-clothes'),
+            'name' => 'Boneka Besar',
+            'slug' => Str::slug('boneka-besar'),
+            'price' => 25000,
+            'qty' => 1,
+            'type' => 'Pcs',
+            'body' => 'Mencuci Boneka Besar Saja',
+            'category_id' => 3,
+        ]);
+        Package::create([
+            'name' => 'Boneka Sedang',
+            'slug' => Str::slug('boneka-sedang'),
+            'price' => 15000,
+            'qty' => 1,
+            'type' => 'Pcs',
+            'body' => 'Mencuci Boneka Sedang Saja',
+            'category_id' => 3,
+        ]);
+        Package::create([
+            'name' => 'Boneka Kecil',
+            'slug' => Str::slug('boneka-kecil'),
             'price' => 10000,
             'qty' => 1,
             'type' => 'Pcs',
-            'body' => 'Setrika baju di hanger',
-            'category_id' => 1,
+            'body' => 'Mencuci Boneka Kecil Saja',
+            'category_id' => 3,
         ]);
     }
 }

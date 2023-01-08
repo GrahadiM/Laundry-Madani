@@ -26,7 +26,7 @@ class WebsiteSeeder extends Seeder
             'wa'  => '6285263211268',
             'phone'  => '6285263211268',
             'mail'  => 'hello@madani.id',
-            'address'  => 'Jalan Suka Karya No. 90, Tuah Karya, Kecamatan Tampan, Kota Pekanbaru, Riau',
+            'address'  => 'Jalan Suka Karya No.90 Tuah Karya, Kecamatan Tampan, Kota Pekanbaru, Riau 28291 Indonesia',
             'instagram'  => 'https://www.instagram.com/',
             'twitter'  => 'https://twitter.com/',
             'facebook'  => 'https://www.facebook.com/',

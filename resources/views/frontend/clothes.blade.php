@@ -22,7 +22,7 @@
             <div class="client_container">
                 <div class="card border-dark mb-3">
                     <div class="card-header">
-                        <a href="{{ url()->previous() }}" class="btn btn-danger btn-sm">Kembali</a>
+                        <a href="{{ route('fe.history_detail', $data['dt']->id) }}" class="btn btn-danger btn-sm">Kembali</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('fe.clothes.post') }}" method="POST">
@@ -31,6 +31,10 @@
                             <div class="form-group">
                                 <div class="font-weight-bold mb-2">Name :</div>
                                 <input type="text" class="form-control" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="font-weight-bold mb-2">Jumlah :</div>
+                                <input type="number" min="1" class="form-control" name="qty" value="1" required>
                             </div>
                             <div class="form-group">
                                 <div class="font-weight-bold mb-2">Detail :</div>

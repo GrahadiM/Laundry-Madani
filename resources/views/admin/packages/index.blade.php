@@ -25,12 +25,11 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
-                        <th>Category</th>
-                        <th>Price</th>
+                        <th>Kategori</th>
+                        <th>Harga</th>
                         <th>Qty</th>
                         <th>Type</th>
                         <th>Detail</th>
-                        <th>Date</th>
                         <th>{{ trans('global.actions') }}</th>
                     </tr>
                 </thead>
@@ -43,7 +42,6 @@
                         <td>{{ $dt->qty }}</td>
                         <td>{{ $dt->type }}</td>
                         <td>{{ $dt->body == null ? '-' : $dt->body }}</td>
-                        <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
                         <td class="text-center">
                             <form action="{{ route('admin.packages.destroy', $dt->id) }}" class="row" method="POST">
                                 @method('DELETE')
@@ -68,18 +66,6 @@
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                        <th>Type</th>
-                        <th>Detail</th>
-                        <th>Date</th>
-                        <th>{{ trans('global.actions') }}</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

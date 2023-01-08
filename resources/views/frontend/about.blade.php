@@ -22,10 +22,8 @@
                             <h2>Tentang Laundry Madani</h2>
                         </div>
                         <p>
-                            Berdiri sejak tahun 2010, lebih dikenal sejak awal dengan nama Laundry Madani 24 jam, atau
-                            Laundry M24, Kami telah melayani banyak pelanggan dalam memberikan layanan jasa kebersihan
-                            laundry untuk produk seperti pakaian sehari-hari, pakaian dinas, sepatu, helm, karpet, keset,
-                            boneka, kebaya, ulos, dan berbagai macam bahan yang telah Kami terima.
+                            Laundy Madani adalah Jasa cuci pakaian dengan mengunakan teknologi mesin otomatis yang
+                            memberikan pelayanan cepat, bersih, murah dan antar jemput.
                         </p>
                     </div>
                 </div>
@@ -37,7 +35,7 @@
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="img-box">
-                        <img src="{{ asset('frontend') }}/images/about-img.jpg" alt="">
+                        <img src="{{ asset('frontend') }}/images/lemari1.jpeg" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -47,10 +45,8 @@
                         </div>
                         <p>
                         <ol>
-                            <li>Layanan siagar 24 Jam sesuai tuntutan kebutuhan masyarakat masa kini.</li>
-                            <li>Melayani Pick Up & Delivery (ongkir Maks 2 KM, kami hanya beroperasi pada jam 10 AM - 8 PM).</li>
-                            <li>Menyediakan pilihan 6 Paket Waktu (3,6,12 Jam & 1,2,3 Hari) dengan penyelesaian tepat waktu
-                                (ontime).</li>
+                            <li>Layanan Laundy Madani sesuai Jam buka untuk memenuhi kebutuhan masyarakat masa kini.</li>
+                            <li>Melayani Pick Up & Delivery (penjemputan Maks 10 KM, kami hanya beroperasi pada jam 7 PM - 10 AM).</li>
                             <li>Meyediakan pilihan menu layanan degan harga dan hasil yang berbeda.</li>
                         </ol>
                         </p>
@@ -104,7 +100,7 @@
                 </div>
                 <div class="col-md-6 ">
                     <div class="img-box">
-                        <img src="{{ asset('frontend') }}/images/about-img2.jpg" alt="">
+                        <img src="{{ asset('frontend') }}/images/mesin-cuci.png" alt="">
                         {{-- <div class="play_btn">
                             <button>
                                 <i class="fa fa-play" aria-hidden="true"></i>

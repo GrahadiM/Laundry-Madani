@@ -87,10 +87,8 @@
                         <tr>
                             <th>Code</th>
                             <th>Customer</th>
-                            <th>Category & Package</th>
-                            <th>Price/Qty</th>
-                            <th>Cost</th>
-                            <th>Order By</th>
+                            <th>Total Harga</th>
+                            <th>Jasa Kurir</th>
                             <th>Status</th>
                             <th>Tanggal</th>
                             <th>{{ trans('global.actions') }}</th>
@@ -101,9 +99,7 @@
                         <tr>
                             <td>{{ $dt->code_order }}</td>
                             <td>{{ $dt->customer->name }}</td>
-                            <td>{{ $dt->package->category->name.' - '.$dt->package->name }}</td>
-                            <td>{{ __('Rp.').number_format($dt->package->price,2,',','.').'/'.$dt->package->qty.$dt->package->type }}</td>
-                            <td>{{ __('Rp.').number_format($dt->cost,2,',','.') }}</td>
+                            <td>{{ __('Rp.').number_format($dt->total,2,',','.') }}</td>
                             <td>{{ $dt->order_by }}</td>
                             <td>
                                 @if ($dt->status == 'Pending')
@@ -116,7 +112,7 @@
                                     <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
                                 @endif
                             </td>
-                            <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
+                            <td>{{ $dt->updated_at ? $dt->updated_at : $dt->created_at }}</td>
                             <td class="text-center">
                                 {{-- <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET" class="row">
                                 @csrf --}}
@@ -148,10 +144,8 @@
                         <tr>
                             <th>Code</th>
                             <th>Customer</th>
-                            <th>Category & Package</th>
-                            <th>Price/Qty</th>
-                            <th>Cost</th>
-                            <th>Order By</th>
+                            <th>Total Harga</th>
+                            <th>Jasa Kurir</th>
                             <th>Status</th>
                             <th>Tanggal</th>
                             <th>{{ trans('global.actions') }}</th>
@@ -175,10 +169,8 @@
                         <tr>
                             <th>Code</th>
                             <th>Customer</th>
-                            <th>Category & Package</th>
-                            <th>Price/Qty</th>
-                            <th>Cost</th>
-                            <th>Order By</th>
+                            <th>Total Harga</th>
+                            <th>Jasa Kurir</th>
                             <th>Status</th>
                             <th>Tanggal</th>
                             <th>{{ trans('global.actions') }}</th>
@@ -189,9 +181,7 @@
                         <tr>
                             <td>{{ $dt->code_order }}</td>
                             <td>{{ $dt->customer->name }}</td>
-                            <td>{{ $dt->package->category->name.' - '.$dt->package->name }}</td>
-                            <td>{{ __('Rp.').number_format($dt->package->price,2,',','.').'/'.$dt->package->qty.$dt->package->type }}</td>
-                            <td>{{ __('Rp.').number_format($dt->cost,2,',','.') }}</td>
+                            <td>{{ __('Rp.').number_format($dt->total,2,',','.') }}</td>
                             <td>{{ $dt->order_by }}</td>
                             <td>
                                 @if ($dt->status == 'Pending')
@@ -204,7 +194,7 @@
                                     <a href="{{ route('admin.transactions.status', $dt->id) }}" class="btn btn-danger">{{ $dt->status }}</a>
                                 @endif
                             </td>
-                            <td>{{ $dt->updated_at ? Carbon\Carbon::parse($dt->updated_at)->diffForHumans() : Carbon\Carbon::parse($dt->created_at)->diffForHumans() }}</td>
+                            <td>{{ $dt->updated_at ? $dt->updated_at : $dt->created_at }}</td>
                             <td class="text-center">
                                 <form action="{{ route('admin.clothes.show', $dt->id) }}" method="GET" class="row">
                                     @csrf
@@ -230,19 +220,6 @@
                         </tr>
                         @endforelse
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Code</th>
-                            <th>Customer</th>
-                            <th>Category & Package</th>
-                            <th>Price/Qty</th>
-                            <th>Cost</th>
-                            <th>Order By</th>
-                            <th>Status</th>
-                            <th>Tanggal</th>
-                            <th>{{ trans('global.actions') }}</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

@@ -17,8 +17,8 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             'Paket Lengkap',
-            'Paket Pilih Waktu',
-            'Paket Setrika Aja',
+            'Paket Jasa',
+            'Paket Satuan',
         ];
 
         foreach ($categories as $category) {

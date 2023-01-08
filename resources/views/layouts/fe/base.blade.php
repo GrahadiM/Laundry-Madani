@@ -21,8 +21,8 @@
 <body @yield('page')>
 
     <div class="hero_area">
-        <div class="hero_bg_box">
-            <img src="{{ asset('frontend') }}/images/slider-bg.jpg" alt="">
+        <div class="hero_bg_box" style="background:#007bff;">
+            {{-- <img src="{{ asset('frontend') }}/images/slider-bg.jpg" alt=""> --}}
         </div>
         <!-- header section strats -->
         <header class="header_section">
