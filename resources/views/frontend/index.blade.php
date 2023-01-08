@@ -147,11 +147,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="btn-box">
-                <a href="">
-                    Read More
-                </a>
-            </div> --}}
         </div>
     </section>
     <!-- end service section -->
@@ -283,11 +278,6 @@
                 <div class="col-md-6 ">
                     <div class="img-box">
                         <img src="{{ asset('frontend') }}/images/mesin-cuci.jpeg" alt="">
-                        {{-- <div class="play_btn">
-                            <button>
-                                <i class="fa fa-play" aria-hidden="true"></i>
-                            </button>
-                        </div> --}}
                     </div>
                 </div>
             </div>

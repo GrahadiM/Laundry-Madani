@@ -20,7 +20,7 @@
                     <a class="nav-link" href="{{ route('fe.about') }}">Tentang Kami</a>
                 </li>
                 <li class="nav-item {{ Request::is('service*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('fe.service') }}">Layanan</a>
+                    <a class="nav-link" href="{{ route('fe.service') }}">Paket</a>
                 </li>
                 {{-- <li class="nav-item {{ Request::is('testimonial*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('fe.testimonial') }}">Testimonial</a>
@@ -56,11 +56,6 @@
                         </li>
                     @endif
                 @endguest
-                {{-- <form class="form-inline">
-                    <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </form> --}}
             </ul>
         </div>
     </nav>
